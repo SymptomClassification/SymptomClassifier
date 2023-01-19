@@ -16,10 +16,10 @@ services:
       - default
     container_name: classification-db
 
-  studentdata-api:
+  chapter-api:
     image: chapterapi-image
     build:
-      context: /desktop/chapterapi
+      context: ~/desktop/chapterapi
       dockerfile: Dockerfile
     depends_on:
       - mysql-docker-container
