@@ -18,7 +18,7 @@ public class ChapterController {
     private ChapterService service;
 
     @GetMapping()
-    public List<Chapter> fetchRoomList() {
+    public List<Chapter> fetchChapters() {
         return service.fetchChapters();
     }
 

@@ -15,6 +15,6 @@ public class ChapterServiceImpl implements ChapterService {
 
     @Override
     public List<Chapter> fetchChapters() {
-        return repo.fetchAllRooms();
+        return repo.fetchChapters();
     }
 }

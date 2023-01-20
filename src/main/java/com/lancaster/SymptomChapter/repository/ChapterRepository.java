@@ -30,8 +30,8 @@ public class ChapterRepository {
         return con;
     }
 
-    public List<Chapter> fetchAllRooms() {
-        List<Chapter> roomList = new ArrayList<>();
+    public List<Chapter> fetchChapters() {
+        List<Chapter> chapters = new ArrayList<>();
         Chapter chapter;
         String selectAll = "SELECT * FROM chapter";
 
@@ -41,12 +41,14 @@ public class ChapterRepository {
 
             while (rs.next()) {
                 chapter = new Chapter();
+                chapter.setId(rs.getInt("id"));
                 chapter.setName(rs.getString("name"));
+                chapters.add(chapter);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return roomList;
+        return chapters;
     }
 
 
