@@ -19,7 +19,7 @@ services:
   chapter-api:
     image: chapterapi-image
     build:
-      context: ~/desktop/chapterapi
+      context: ~/desktop/SymptomChapter
       dockerfile: Dockerfile
     depends_on:
       - mysql-docker-container
