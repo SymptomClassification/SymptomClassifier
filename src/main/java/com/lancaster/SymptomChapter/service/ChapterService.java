@@ -11,8 +11,8 @@ public interface ChapterService {
 
     void saveChapter(Chapter chapter);
 
-    Optional<Chapter> fetchChapterWithName(String name);
+    Chapter fetchChapterWithName(String name);
 
-    Optional<Chapter> updateChapter(Chapter chapter, int id);
+    Chapter updateChapter(Chapter chapter, int id);
 
 }

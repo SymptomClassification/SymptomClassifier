@@ -25,13 +25,13 @@ public class ChapterServiceImpl implements ChapterService {
     }
 
     @Override
-    public Optional<Chapter> fetchChapterWithName(String name) {
-        return repo.fetchChapterWithName(name);
+    public Chapter fetchChapterWithName(String name) {
+        return repo.fetchChapterWithName(name).get();
     }
 
     @Override
-    public Optional<Chapter> updateChapter(Chapter chapter, int id) {
-        return repo.updateChapter(chapter, id);
+    public Chapter updateChapter(Chapter chapter, int id) {
+        return repo.updateChapter(chapter, id).get();
     }
 
 }
