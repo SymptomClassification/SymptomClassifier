@@ -60,6 +60,7 @@ public class ChapterRepository {
             PreparedStatement stm = getDBConnection().prepareStatement(create);
             stm.setInt(1, chapter.getId());
             stm.setString(2, chapter.getName());
+            stm.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

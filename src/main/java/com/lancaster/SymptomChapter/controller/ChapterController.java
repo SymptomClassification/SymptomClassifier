@@ -32,7 +32,7 @@ public class ChapterController {
     }
 
     @RequestMapping(value = "findChapterWithName/{name}", method = RequestMethod.GET, produces = {
-            MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+            MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Chapter> findChapterWithName(@PathVariable("name") String name) {
         return new ResponseEntity<>(service.fetchChapterWithName(name), HttpStatus.OK);
     }
