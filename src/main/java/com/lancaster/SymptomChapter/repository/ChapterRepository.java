@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ChapterRepository {
@@ -51,5 +52,84 @@ public class ChapterRepository {
         return chapters;
     }
 
+    public void saveChapter(Chapter chapter) {
+        String create = "INSERT INTO chapter (id, name) " +
+                " VALUES (?, ?)";
+
+        try {
+            PreparedStatement stm = getDBConnection().prepareStatement(create);
+            stm.setInt(1, chapter.getId());
+            stm.setString(2, chapter.getName());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Optional<Chapter> fetchChapterWithName(String name) {
+        Optional<Chapter> ch = Optional.empty();
+        Chapter chapter = new Chapter();
+        String select = "SELECT * FROM chapter WHERE name = '" + name + "'";
+
+        try {
+            Statement stm = getDBConnection().createStatement();
+            ResultSet rs = stm.executeQuery(select);
+
+            while (rs.next()) {
+                chapter.setId(rs.getInt("id"));
+                chapter.setName(rs.getString("name"));
+
+                ch = Optional.of(chapter);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return ch;
+    }
+
+    public Optional<Chapter> fetchChapterWithId(int id) {
+        Optional<Chapter> ch = Optional.empty();
+        Chapter chapter = new Chapter();
+        String select = "SELECT * FROM chapter WHERE id = " + id;
+
+        try {
+            Statement stm = getDBConnection().createStatement();
+            ResultSet rs = stm.executeQuery(select);
+
+            while (rs.next()) {
+                chapter.setId(rs.getInt("id"));
+                chapter.setName(rs.getString("name"));
+
+                ch = Optional.of(chapter);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return ch;
+    }
+
+    public Optional<Chapter> updateChapter(Chapter chapter, int id) {
+        Optional<Chapter> ch = fetchChapterWithId(id);
+        String update = "UPDATE chapter SET id = ?, name = ? WHERE id = ? ";
+
+        if (!ch.isPresent()) {
+            ch = Optional.empty();
+            return ch;
+        }
+
+        try {
+            PreparedStatement stm = getDBConnection().prepareStatement(update);
+            stm.setLong(1, id);
+            stm.setString(2, chapter.getName());
+            stm.setInt(3, id);
+
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return ch;
+    }
 
 }

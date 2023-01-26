@@ -4,11 +4,14 @@ package com.lancaster.SymptomChapter.controller;
 import com.lancaster.SymptomChapter.model.Chapter;
 import com.lancaster.SymptomChapter.service.ChapterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/chapters")
@@ -21,5 +24,32 @@ public class ChapterController {
     public List<Chapter> fetchChapters() {
         return service.fetchChapters();
     }
+
+    @RequestMapping(value = "createChapter", method = RequestMethod.POST, produces = {
+            MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createChapter(@Validated @RequestBody Chapter chapter) {
+        service.saveChapter(chapter);
+    }
+
+    @RequestMapping(value = "findChapterWithName/{name}", method = RequestMethod.GET, produces = {
+            MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Optional<Chapter>> findChapterWithName(@PathVariable("name") String name) {
+        return new ResponseEntity<>(service.fetchChapterWithName(name), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "updateChapter/{id}", method = RequestMethod.PUT, produces = {
+            MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Chapter> updateChapter(@RequestBody Chapter chapter, @PathVariable("id") int id) {
+        Optional<Chapter> c = service.updateChapter(chapter, id);
+        if (c.isPresent()) {
+            Chapter chap = c.get();
+            return new ResponseEntity<>(chap, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        }
+
+    }
+
 
 }
