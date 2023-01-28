@@ -40,6 +40,58 @@ INSERT INTO `chapter` VALUES (1,'Vertigo '),(2,'Head outer '),(3,'Head inner '),
 UNLOCK TABLES;
 
 --
+-- Table structure for table `secondsubchapters`
+--
+
+DROP TABLE IF EXISTS `secondsubchapters`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `secondsubchapters` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `subId` int(11) NOT NULL,
+  `major` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `subId_idx` (`subId`),
+  CONSTRAINT `subId` FOREIGN KEY (`subId`) REFERENCES `subchapters` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `secondsubchapters`
+--
+
+LOCK TABLES `secondsubchapters` WRITE;
+/*!40000 ALTER TABLE `secondsubchapters` DISABLE KEYS */;
+INSERT INTO `secondsubchapters` VALUES (1,20,'Eyelids','General'),(2,20,'Eyelids','upper'),(3,20,'Eyelids','lower'),(4,23,'Corner of the eyes','General'),(5,23,'Corner of the eyes','outer'),(6,23,'Corner of the eyes','inner'),(7,66,'Lips','General'),(8,66,'Lips','upper'),(9,66,'Lips','lower'),(10,74,'Saliva','General'),(11,74,'Saliva','increase'),(12,74,'Saliva','decrease'),(13,88,'Teeth','General'),(14,88,'Teeth','incisors'),(15,88,'Teeth','canine teeth'),(16,88,'Teeth','molar teeth'),(17,89,'molar teeth','upper teeth'),(18,89,'molar teeth','lower teeth'),(19,110,'Upper abdomen','Pancreas'),(20,110,'Upper abdomen','Liver'),(21,110,'Upper abdomen','Gall bladder'),(22,110,'Upper abdomen','Spleen'),(23,117,'Lower abdomen','Ileocecal region'),(24,117,'small pelvis','Ileocecal region'),(25,135,'Stool consistency','Diarrhea'),(26,135,'Stool consistency','Constipation'),(27,121,'Large intestine','Appendix'),(28,121,'Large intestine','vermiform appendix'),(29,121,'Large intestine','Colon'),(30,121,'Large intestine','Rectum'),(31,123,'Flatulence','- General'),(32,123,'Flatulence','Flatulency'),(33,123,'Flatulence','Flatulence dislocation');
+/*!40000 ALTER TABLE `secondsubchapters` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sub_chapter`
+--
+
+DROP TABLE IF EXISTS `sub_chapter`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sub_chapter` (
+  `id` int(11) NOT NULL,
+  `chapter_id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sub_chapter`
+--
+
+LOCK TABLES `sub_chapter` WRITE;
+/*!40000 ALTER TABLE `sub_chapter` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sub_chapter` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `subchapters`
 --
 
@@ -102,4 +154,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-27 16:38:34
+-- Dump completed on 2023-01-29  0:15:26
