@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/chapters")
+@RequestMapping("/api/v1")
 public class ChapterController {
 
     @Autowired
     private ChapterService service;
 
-    @GetMapping()
+    @GetMapping("/chapters")
     public List<Chapter> fetchChapters() {
         return service.fetchChapters();
     }
