@@ -126,6 +126,7 @@ public class ChapterRepository {
             stm.setInt(3, id);
 
             stm.executeUpdate();
+            ch = fetchChapterWithId(id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
