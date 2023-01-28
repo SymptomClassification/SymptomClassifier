@@ -57,7 +57,7 @@ services:
   secondsubchapter-api:
     image: secondsubchapterapi-image
     build:
-      context: ~/desktop/SecondSubChapter
+      context: ~/desktop/SymptomSecondSubChapter
       dockerfile: Dockerfile
     depends_on:
       - mysql-docker-container
