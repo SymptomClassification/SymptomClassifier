@@ -35,7 +35,7 @@ CREATE TABLE `chapter` (
 
 LOCK TABLES `chapter` WRITE;
 /*!40000 ALTER TABLE `chapter` DISABLE KEYS */;
-INSERT INTO `chapter` VALUES (1,'Vertigo '),(2,'Head outer '),(3,'Head inner '),(4,'Eye outer '),(5,'Eye inner '),(6,'Vision '),(7,'Ear outer '),(8,'Ear inner '),(9,'Hearing '),(10,'Nose outer '),(11,'Nose inner '),(12,'Rhinitis '),(13,'Face '),(14,'Mouth outer '),(15,'Mouth inner '),(16,'Tongue '),(17,'Taste '),(18,'Jaws teeth '),(19,'Appetite '),(20,'Thirst '),(21,'Food drink '),(22,'Throat internal '),(23,'Belching '),(24,'Nausea vomiting '),(25,'Indigestion dyspepsia '),(26,'Stomach '),(27,'Abdomen internal '),(28,'Intestine '),(29,'Anus perineum '),(30,'Stool '),(31,'Abdomen external '),(32,'Groin pubic region '),(33,'New Chapter Test');
+INSERT INTO `chapter` VALUES (1,'Vertigo '),(2,'Head outer '),(3,'Head inner '),(4,'Eye outer '),(5,'Eye inner '),(6,'Vision '),(7,'Ear outer '),(8,'Ear inner '),(9,'Hearing '),(10,'Nose outer '),(11,'Nose inner '),(12,'Rhinitis '),(13,'Face '),(14,'Mouth outer '),(15,'Mouth inner '),(16,'Tongue '),(17,'Taste '),(18,'Jaws teeth '),(19,'Appetite '),(20,'Thirst '),(21,'Food drink '),(22,'Throat internal '),(23,'Belching '),(24,'Nausea vomiting '),(25,'Indigestion dyspepsia '),(26,'Stomach '),(27,'Abdomen internal '),(28,'Intestine '),(29,'Anus perineum '),(30,'Stool '),(31,'Abdomen external '),(32,'Groin pubic region ');
 /*!40000 ALTER TABLE `chapter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,30 +65,6 @@ LOCK TABLES `secondsubchapters` WRITE;
 /*!40000 ALTER TABLE `secondsubchapters` DISABLE KEYS */;
 INSERT INTO `secondsubchapters` VALUES (1,20,'Eyelids','General'),(2,20,'Eyelids','upper'),(3,20,'Eyelids','lower'),(4,23,'Corner of the eyes','General'),(5,23,'Corner of the eyes','outer'),(6,23,'Corner of the eyes','inner'),(7,66,'Lips','General'),(8,66,'Lips','upper'),(9,66,'Lips','lower'),(10,74,'Saliva','General'),(11,74,'Saliva','increase'),(12,74,'Saliva','decrease'),(13,88,'Teeth','General'),(14,88,'Teeth','incisors'),(15,88,'Teeth','canine teeth'),(16,88,'Teeth','molar teeth'),(17,89,'molar teeth','upper teeth'),(18,89,'molar teeth','lower teeth'),(19,110,'Upper abdomen','Pancreas'),(20,110,'Upper abdomen','Liver'),(21,110,'Upper abdomen','Gall bladder'),(22,110,'Upper abdomen','Spleen'),(23,117,'Lower abdomen','Ileocecal region'),(24,117,'small pelvis','Ileocecal region'),(25,135,'Stool consistency','Diarrhea'),(26,135,'Stool consistency','Constipation'),(27,121,'Large intestine','Appendix'),(28,121,'Large intestine','vermiform appendix'),(29,121,'Large intestine','Colon'),(30,121,'Large intestine','Rectum'),(31,123,'Flatulence','- General'),(32,123,'Flatulence','Flatulency'),(33,123,'Flatulence','Flatulence dislocation');
 /*!40000 ALTER TABLE `secondsubchapters` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sub_chapter`
---
-
-DROP TABLE IF EXISTS `sub_chapter`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `sub_chapter` (
-  `id` int(11) NOT NULL,
-  `chapter_id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sub_chapter`
---
-
-LOCK TABLES `sub_chapter` WRITE;
-/*!40000 ALTER TABLE `sub_chapter` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sub_chapter` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -154,4 +130,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-29  0:15:26
+-- Dump completed on 2023-01-29 23:13:31
