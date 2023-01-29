@@ -76,7 +76,7 @@ services:
   subtitle-api:
     image: subtitle-image
     build:
-      context: ~/desktop/SymptomSecondSubChapter
+      context: ~/desktop/SymptomSubtitle
       dockerfile: Dockerfile
     depends_on:
       - mysql-docker-container
