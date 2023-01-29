@@ -53,13 +53,12 @@ public class ChapterRepository {
     }
 
     public void saveChapter(Chapter chapter) {
-        String create = "INSERT INTO chapter (id, name) " +
-                " VALUES (?, ?)";
+        String create = "INSERT INTO chapter (name) " +
+                " VALUES (?)";
 
         try {
             PreparedStatement stm = getDBConnection().prepareStatement(create);
-            stm.setInt(1, chapter.getId());
-            stm.setString(2, chapter.getName());
+            stm.setString(1, chapter.getName());
             stm.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -19,7 +19,7 @@ public class ChapterController {
     @Autowired
     private ChapterService service;
 
-    @GetMapping("/fetchChapters")
+    @GetMapping("fetchChapters")
     public List<Chapter> fetchChapters() {
         return service.fetchChapters();
     }
