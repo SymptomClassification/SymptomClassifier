@@ -10,8 +10,10 @@ services:
       - MYSQL_PASSWORD=mypass
     volumes:
       - ./Dump20230129.sql:/docker-entrypoint-initdb.d/Dump20230129.sql
+    ports:
+      - "3333:3306"
     network_mode:
-      host
+      bridge
     container_name: classification-db
 
   chapter-api:
@@ -30,7 +32,7 @@ services:
     volumes:
       - /data/chapterapi-app
     network_mode:
-      host
+      bridge
     container_name: chapterapi-api
 
   subchapter-api:
@@ -49,7 +51,7 @@ services:
     volumes:
       - /data/subchapterapi-app
     network_mode:
-      host
+      bridge
     container_name: subchapterapi-api
 
   secondsubchapter-api:
@@ -68,7 +70,7 @@ services:
     volumes:
       - /data/secondsubchapterapi-app
     network_mode:
-      host
+      bridge
     container_name: secondsubchapterapi-api
 
   subtitle-api:
@@ -87,7 +89,7 @@ services:
     volumes:
       - /data/subtitle-app
     network_mode:
-      host
+      bridge
     container_name: subtitle-api
 #networks:
 #  default:
