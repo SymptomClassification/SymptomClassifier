@@ -3,7 +3,6 @@ package com.lancaster.SymptomChapter.service;
 import com.lancaster.SymptomChapter.model.Chapter;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ChapterService {
 
@@ -14,5 +13,4 @@ public interface ChapterService {
     Chapter fetchChapterWithName(String name);
 
     Chapter updateChapter(Chapter chapter, int id);
-
 }

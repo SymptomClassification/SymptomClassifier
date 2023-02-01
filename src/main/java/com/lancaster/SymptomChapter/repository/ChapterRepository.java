@@ -109,6 +109,7 @@ public class ChapterRepository {
         return ch;
     }
 
+
     public Optional<Chapter> updateChapter(Chapter chapter, int id) {
         Optional<Chapter> ch = fetchChapterWithId(id);
         String update = "UPDATE chapter SET id = ?, name = ? WHERE id = ? ";
