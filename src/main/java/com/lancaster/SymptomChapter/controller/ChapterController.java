@@ -42,7 +42,6 @@ public class ChapterController {
     public ResponseEntity<Chapter> updateChapter(@RequestBody Chapter chapter, @PathVariable("id") int id) {
         Chapter c = service.updateChapter(chapter, id);
         return new ResponseEntity<>(c, HttpStatus.OK);
-
     }
 
 

@@ -43,5 +43,12 @@ public class SymptomClassificationController {
         return new ResponseEntity<>(c, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "classifySymptom/{name}", method = RequestMethod.GET, produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<String>> classifySymptom(@PathVariable("name") String name) {
+        List<String> c = service.classifySymptom(name);
+        return new ResponseEntity<>(c, HttpStatus.OK);
+    }
+
 
 }
