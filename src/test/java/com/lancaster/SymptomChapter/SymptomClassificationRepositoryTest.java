@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(DriverManager.class)
-public class ClassifiedSymptomRepositoryTest {
+public class SymptomClassificationRepositoryTest {
 
     @Mock
     private Connection mockConnection;
