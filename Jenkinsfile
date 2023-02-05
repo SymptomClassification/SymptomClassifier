@@ -4,9 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                dir('SymptomChapter'){
-                    git branch: 'master', url: 'https://dagere.comiles.eu/git/SymptomClassification/SymptomChapterService'
-                }
+                git branch: 'master', url: 'https://dagere.comiles.eu/git/SymptomClassification/SymptomChapterService'
             }
         }
         stage('Build Docker Images') {

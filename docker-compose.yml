@@ -1,42 +1,11 @@
 version: '3'
 
 services:
-  mysql-docker-container:
-    image: mysql:5.7
-    ports:
-      - "3333:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: mypass
-      MYSQL_USER: ahmet
-      MYSQL_PASSWORD: mypass
-      MYSQL_DATABASE: classification
-    volumes:
-      - ./initial-data.sql:/docker-entrypoint-initdb.d/initial-data.sql
-    networks:
-      - default
-    container_name: classification-db
-
-#  maria-docker-container:
-#    image: mariadb:latest
-#    ports:
-#      - "3332:3305"
-#    environment:
-#      MYSQL_ROOT_PASSWORD: mypass
-#      MYSQL_USER: ahmet
-#      MYSQL_PASSWORD: mypass
-#      MYSQL_DATABASE: classification
-#    volumes:
-#      - ./initial-data.sql:/docker-entrypoint-initdb.d/initial-data.sql
-#    networks:
-#      - default
-#    container_name: maria-db
 
   chapter-api:
     image: chapterapi-image
     build:
-      context: ./SymptomChapter
-    depends_on:
-      - mysql-docker-container
+      context: .
     ports:
       - "8090:8090"
     environment:
@@ -48,60 +17,6 @@ services:
     networks:
       - default
     container_name: chapterapi-api
-
-  subchapter-api:
-    image: subchapterapi-image
-    build:
-      context: ./SymptomSubchapter
-    depends_on:
-      - mysql-docker-container
-    ports:
-      - "8094:8094"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-docker-container:3306/classification?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
-      SPRING_DATASOURCE_USERNAME: ahmet
-      SPRING_DATASOURCE_PASSWORD: mypass
-    volumes:
-      - /data/subchapterapi-app
-    networks:
-      - default
-    container_name: subchapterapi-api
-
-  secondsubchapter-api:
-    image: secondsubchapterapi-image
-    build:
-      context: ./SymptomSecondSubChapter
-    depends_on:
-      - mysql-docker-container
-    ports:
-      - "8096:8096"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-docker-container:3306/classification?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
-      SPRING_DATASOURCE_USERNAME: ahmet
-      SPRING_DATASOURCE_PASSWORD: mypass
-    volumes:
-      - /data/secondsubchapterapi-app
-    networks:
-      - default
-    container_name: secondsubchapterapi-api
-
-  subtitle-api:
-    image: subtitle-image
-    build:
-      context: ./SymptomSubtitle
-    depends_on:
-      - mysql-docker-container
-    ports:
-      - "8098:8098"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-docker-container:3306/classification?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
-      SPRING_DATASOURCE_USERNAME: ahmet
-      SPRING_DATASOURCE_PASSWORD: mypass
-    volumes:
-      - /data/subtitle-app
-    networks:
-      - default
-    container_name: subtitle-api
 
 networks:
   default:
