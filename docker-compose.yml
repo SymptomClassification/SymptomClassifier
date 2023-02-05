@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-
   chapter-api:
     image: chapterapi-image
     build:

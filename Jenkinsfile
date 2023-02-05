@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build Docker Images') {
             steps {
-                sh 'docker-compose build chapterapi-api'
+                sh 'docker-compose build'
             }
         }
         stage('Check and Stop Container') {
@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Start Container') {
             steps {
-                sh 'docker-compose up -d chapterapi-api'
+                sh 'docker-compose up'
             }
         }
     }
