@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-// test for git web hook
+
 @Service
 public class SymptomClassificationServiceImpl implements SymptomClassificationService {
 
