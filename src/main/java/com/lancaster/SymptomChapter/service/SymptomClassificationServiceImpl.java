@@ -23,8 +23,8 @@ public class SymptomClassificationServiceImpl implements SymptomClassificationSe
     }
 
     @Override
-    public void saveClassifiedSymptom(ClassifiedSymptom classifiedSymptom) {
-        repo.saveSymptom(classifiedSymptom);
+    public ClassifiedSymptom saveClassifiedSymptom(ClassifiedSymptom classifiedSymptom) {
+        return repo.saveSymptom(classifiedSymptom);
     }
 
     @Override

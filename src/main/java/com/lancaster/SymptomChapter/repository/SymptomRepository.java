@@ -56,9 +56,10 @@ public class SymptomRepository {
         return symptoms;
     }
 
-    public void saveSymptom(ClassifiedSymptom classifiedSymptom) {
+    public ClassifiedSymptom saveSymptom(ClassifiedSymptom classifiedSymptom) {
         String create = "INSERT INTO classifiedsymptom (name, chapterId, subchapterId, secondsubId) " +
                 " VALUES (?, ?, ?, ?)";
+
 
         try {
             PreparedStatement stm = getDBConnection().prepareStatement(create);
@@ -70,6 +71,8 @@ public class SymptomRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        return classifiedSymptom;
     }
 
     public Optional<ClassifiedSymptom> fetchSymptomWithId(int id) {

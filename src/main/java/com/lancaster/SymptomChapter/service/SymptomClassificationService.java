@@ -8,7 +8,7 @@ public interface SymptomClassificationService {
 
     List<ClassifiedSymptom> fetchClassifiedSymptoms();
 
-    void saveClassifiedSymptom(ClassifiedSymptom classifiedSymptom);
+    ClassifiedSymptom saveClassifiedSymptom(ClassifiedSymptom classifiedSymptom);
 
     ClassifiedSymptom fetchClassifiedSymptomWithName(String name);
 

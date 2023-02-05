@@ -26,8 +26,8 @@ public class SymptomClassificationController {
     @RequestMapping(value = "createClassifiedSymptom", method = RequestMethod.POST, produces = {
             MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseStatus(HttpStatus.CREATED)
-    public void createClassifiedSymptom(@Validated @RequestBody ClassifiedSymptom symptom) {
-        service.saveClassifiedSymptom(symptom);
+    public ResponseEntity<ClassifiedSymptom> createClassifiedSymptom(@Validated @RequestBody ClassifiedSymptom symptom) {
+        return new ResponseEntity<>(service.saveClassifiedSymptom(symptom), HttpStatus.OK);
     }
 
     @RequestMapping(value = "findClassifiedSymptomWithName/{name}", method = RequestMethod.GET, produces = {
