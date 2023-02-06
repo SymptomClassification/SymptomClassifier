@@ -1,4 +1,5 @@
-FROM eclipse-temurin:17-jdk-focal
+# Use a minimal base image as the first stage
+FROM openjdk:11-jre-slim as build
 
 WORKDIR /app
 
@@ -15,4 +16,12 @@ RUN ./mvnw dependency:go-offline
 
 COPY src ./src
 
-CMD ["./mvnw", "spring-boot:run"]
+# Start a new stage using the same base image
+FROM openjdk:11-jre-slim
+
+WORKDIR /app
+
+# Copy only the compiled Java artifacts from the build stage
+COPY --from=build /app/target/ .
+
+CMD ["java", "-jar", "your-app.jar"]
