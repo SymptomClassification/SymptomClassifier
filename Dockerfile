@@ -3,7 +3,7 @@ FROM python:3.9-slim
 RUN pip install requests
 
 # Build your Java application image
-FROM openjdk:11-jre-slim
+FROM eclipse-temurin:17-jdk-focal
 
 WORKDIR /app
 
