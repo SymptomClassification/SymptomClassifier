@@ -24,7 +24,7 @@ public class ChapterController {
         return service.fetchChapters();
     }
 
-    @RequestMapping(value = "createChapter", method = RequestMethod.POST, produces = {
+    @RequestMapping(value = "create", method = RequestMethod.POST, produces = {
             MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseStatus(HttpStatus.CREATED)
     public void createChapter(@Validated @RequestBody Chapter chapter) {
