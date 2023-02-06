@@ -17,4 +17,4 @@ RUN ./mvnw dependency:go-offline
 
 COPY src ./src
 
-CMD ["java", "-jar", "your-app.jar"]
+CMD ["java", "-jar", "SymptomChapter-0.0.1-SNAPSHOT.jar"]
