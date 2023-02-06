@@ -12,31 +12,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/classifiedSymptoms")
+@RequestMapping("/classifiedSymptoms")
 public class SymptomClassificationController {
 
     @Autowired
     private SymptomClassificationService service;
 
-    @RequestMapping("fetchClassifiedSymptoms")
+    @RequestMapping()
     public List<ClassifiedSymptom> fetchClassifiedSymptoms() {
         return service.fetchClassifiedSymptoms();
     }
 
-    @RequestMapping(value = "createClassifiedSymptom", method = RequestMethod.POST, produces = {
+    @RequestMapping(value = "create", method = RequestMethod.POST, produces = {
             MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<ClassifiedSymptom> createClassifiedSymptom(@Validated @RequestBody ClassifiedSymptom symptom) {
         return new ResponseEntity<>(service.saveClassifiedSymptom(symptom), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "findClassifiedSymptomWithName/{name}", method = RequestMethod.GET, produces = {
+    @RequestMapping(value = "classifiedSymptom/{name}", method = RequestMethod.GET, produces = {
             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ClassifiedSymptom> findClassifiedSymptomWithName(@PathVariable("name") String name) {
         return new ResponseEntity<>(service.fetchClassifiedSymptomWithName(name), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "updateClassifiedSymptom/{name}", method = RequestMethod.PUT, produces = {
+    @RequestMapping(value = "update/{name}", method = RequestMethod.PUT, produces = {
             MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ClassifiedSymptom> updateClassifiedSymptom(@RequestBody ClassifiedSymptom symptom, @PathVariable("name") String name) {
         ClassifiedSymptom c = service.updateClassifiedSymptom(symptom, name);

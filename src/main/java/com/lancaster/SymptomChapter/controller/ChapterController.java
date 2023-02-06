@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/chapters")
+@RequestMapping("/chapters")
 public class ChapterController {
 
     @Autowired
     private ChapterService service;
 
-    @GetMapping("fetchChapters")
+    @GetMapping()
     public List<Chapter> fetchChapters() {
         return service.fetchChapters();
     }
@@ -31,7 +31,7 @@ public class ChapterController {
         service.saveChapter(chapter);
     }
 
-    @RequestMapping(value = "findChapterWithName/{name}", method = RequestMethod.GET, produces = {
+    @RequestMapping(value = "chapter/{name}", method = RequestMethod.GET, produces = {
             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Chapter> findChapterWithName(@PathVariable("name") String name) {
         return new ResponseEntity<>(service.fetchChapterWithName(name), HttpStatus.OK);
