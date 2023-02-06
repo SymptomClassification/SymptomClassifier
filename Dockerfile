@@ -11,9 +11,6 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y jython
 
 COPY --from=0 /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
 
 COPY target ./target
 
