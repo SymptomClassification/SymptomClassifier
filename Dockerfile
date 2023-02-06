@@ -2,8 +2,8 @@ FROM openjdk:11-jre-slim
 
 WORKDIR /app
 
-# Install Jython
-RUN apt-get update && apt-get install -y jython
+# Install Jython and Jython's development tools
+RUN apt-get update && apt-get install -y jython jython-dev
 
 # Install Python library "requests"
 RUN jyson install requests
