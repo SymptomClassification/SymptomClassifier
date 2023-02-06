@@ -37,7 +37,7 @@ public class ChapterController {
         return new ResponseEntity<>(service.fetchChapterWithName(name), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "updateChapter/{id}", method = RequestMethod.PUT, produces = {
+    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT, produces = {
             MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Chapter> updateChapter(@RequestBody Chapter chapter, @PathVariable("id") int id) {
         Chapter c = service.updateChapter(chapter, id);
