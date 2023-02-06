@@ -15,6 +15,6 @@ COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 RUN ./mvnw dependency:go-offline
 
-COPY src ./src
+COPY target ./target
 
-CMD ["java", "-jar", "SymptomChapter-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/SymptomChapter-0.0.1-SNAPSHOT.jar"]
