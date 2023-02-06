@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM eclipse-temurin:17-jdk-focal
 
 WORKDIR /app
 
@@ -9,7 +9,4 @@ RUN ./mvnw dependency:go-offline
 COPY src ./src
 
 CMD ["./mvnw", "spring-boot:run"]
-
-
-
 
