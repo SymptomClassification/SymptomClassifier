@@ -17,11 +17,6 @@ pipeline {
                 sh './mvnw test'
             }
         }
-        stage('Copy Jar File') {
-            steps {
-                sh 'cp target/SymptomChapter-0.0.1-SNAPSHOT.jar target/'
-            }
-        }
         stage('Build Docker Images') {
             steps {
                 sh 'docker-compose build'
