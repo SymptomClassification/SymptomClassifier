@@ -159,7 +159,7 @@ def pipeline(symptom):
 
     return [" + ".join(list(final_output)), list(chaptersId), list(subchaptersId)]
 
-if __name__ == '__main__':
-    classification = pipeline(" ".join(sys.argv[1:]))
-    print(classification)
+# if __name__ == '__main__':
+#     classification = pipeline(" ".join(sys.argv[1:]))
+#     print(classification)
 
