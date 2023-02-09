@@ -8,7 +8,8 @@ RUN apt-get install -y python3-pip
 COPY target ./target
 COPY src/main/resources/scripts/keywordClassify.py ./src/main/resources/scripts/
 COPY requirements.txt .
-COPY target/dependency/jython-standalone-2.7.3.jar /app/jython.jar
+
+RUN wget https://repo1.maven.org/maven2/org/python/jython-standalone/2.7.3/jython-standalone-2.7.3.jar -O /app/jython.jar
 
 RUN pip3 install -r requirements.txt
 
