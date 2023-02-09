@@ -8,4 +8,4 @@ COPY requirements.txt .
 
 RUN pip3 install -r requirements.txt
 
-CMD ["java", "-jar", "target/SymptomChapter-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-Dpython.import.site=false", "-jar", "target/SymptomChapter-0.0.1-SNAPSHOT.jar"]
