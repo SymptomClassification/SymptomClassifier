@@ -162,5 +162,4 @@ def pipeline(symptom):
 if __name__ == '__main__':
     classification = pipeline(" ".join(sys.argv[1:]))
     print(classification)
-    print(sys.path)
 
