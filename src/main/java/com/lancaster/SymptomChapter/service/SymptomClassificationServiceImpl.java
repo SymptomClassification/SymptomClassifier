@@ -6,6 +6,7 @@ import com.lancaster.SymptomChapter.repository.SymptomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,8 +38,20 @@ public class SymptomClassificationServiceImpl implements SymptomClassificationSe
         return repo.updateSymptom(classifiedSymptom, name).get();
     }
 
+//    @Override
+//    public List<String> classifySymptom(String symptom) {
+//        return symptomClassifier.parseResult(symptom);
+//    }
+
     @Override
     public List<String> classifySymptom(String symptom) {
-        return symptomClassifier.parseResult(symptom);
+        List<String> result = new ArrayList<String>();
+        result.add("[\n" +
+                "    \"[u'Head outer\",\n" +
+                "    \" General + Head inner\",\n" +
+                "    \" General'\",\n" +
+                "    \" [2\"\n" +
+                "]");
+        return result;
     }
 }
