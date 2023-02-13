@@ -1,7 +1,6 @@
 package com.lancaster.SymptomChapter.service;
 
-//import com.lancaster.SymptomChapter.classify.SymptomClassifier;
-//import com.lancaster.SymptomChapter.classify.SymptomClassifier;
+import com.lancaster.SymptomChapter.classify.SymptomClassifier;
 import com.lancaster.SymptomChapter.model.ClassifiedSymptom;
 import com.lancaster.SymptomChapter.repository.SymptomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ public class SymptomClassificationServiceImpl implements SymptomClassificationSe
     @Autowired
     private SymptomRepository repo;
 
-//    SymptomClassifier symptomClassifier = new SymptomClassifier();
+    SymptomClassifier symptomClassifier = new SymptomClassifier();
 
 
     @Override
@@ -38,8 +37,8 @@ public class SymptomClassificationServiceImpl implements SymptomClassificationSe
         return repo.updateSymptom(classifiedSymptom, name).get();
     }
 
-//    @Override
-//    public List<String> classifySymptom(String symptom) {
-//        return symptomClassifier.parseResult(symptom);
-//    }
+    @Override
+    public List<String> classifySymptom(String symptom) {
+        return symptomClassifier.parseResult(symptom);
+    }
 }
