@@ -14,6 +14,6 @@ public interface SymptomClassificationService {
 
     ClassifiedSymptom updateClassifiedSymptom(ClassifiedSymptom classifiedSymptom, String name);
 
-//    List<String> classifySymptom(String symptom);
+    List<String> classifySymptom(String symptom);
 
 }

@@ -1,4 +1,4 @@
-FROM openkbs/jdk-mvn-py3
+FROM lordgaav/jython
 
 WORKDIR /app
 
