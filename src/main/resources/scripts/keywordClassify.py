@@ -120,15 +120,15 @@ def pipeline(symptom):
     symptom_subchapter = []
     final_output = set()
 
-    chaptersRequest = requests.get('http://dagere.comiles.eu:8090/api/v1/chapters/fetchChapters')
+    chaptersRequest = requests.get('http://dagere.comiles.eu:8090/chapters')
     if chaptersRequest.status_code == 200:
         chapters = chaptersRequest.json()
 
-    subchaptersRequest = requests.get('http://dagere.comiles.eu:8094/api/v1/subchapters/fetchSubchapters')
+    subchaptersRequest = requests.get('http://dagere.comiles.eu:8094/subchapters')
     if subchaptersRequest.status_code == 200:
         subchapters = subchaptersRequest.json()
 
-    subtitlesRequest = requests.get('http://dagere.comiles.eu:8098/api/v1/subtitles/fetchSubtitles')
+    subtitlesRequest = requests.get('http://dagere.comiles.eu:8098/subtitles')
     if subtitlesRequest.status_code == 200:
         subtitles = subtitlesRequest.json()
 
