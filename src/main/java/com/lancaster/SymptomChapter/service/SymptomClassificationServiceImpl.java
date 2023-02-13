@@ -15,7 +15,7 @@ public class SymptomClassificationServiceImpl implements SymptomClassificationSe
     @Autowired
     private SymptomRepository repo;
 
-    SymptomClassifier symptomClassifier = new SymptomClassifier();
+//    SymptomClassifier symptomClassifier = new SymptomClassifier();
 
 
     @Override
