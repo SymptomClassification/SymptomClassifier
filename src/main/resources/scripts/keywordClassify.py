@@ -157,9 +157,10 @@ def pipeline(symptom):
     #if len(subchaptersId) == 0:
         #subchaptersId.add(-1)
 
-    return [" + ".join(list(final_output)), list(chaptersId), list(subchaptersId)]
+    return [list(final_output)]
 
-# if __name__ == '__main__':
-#     classification = pipeline(" ".join(sys.argv[1:]))
-#     print(classification)
+if __name__ == '__main__':
+    classification = pipeline(" ".join(sys.argv[1:]))
+    print(classification)
+
 

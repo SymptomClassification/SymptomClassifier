@@ -1,27 +1,29 @@
 package com.lancaster.SymptomChapter.classify;
 
-import org.python.core.PyObject;
-import org.python.util.PythonInterpreter;
-
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SymptomClassifier {
-//    PythonInterpreter interpreter = new PythonInterpreter();
-//
-//    public String[] classifySymptom(String symptom) {
-//        interpreter.execfile("src/main/resources/scripts/keywordClassify.py");
-//        interpreter.exec("result = pipeline(\"+\"'\"+" + symptom + "\"'\"+\")");
-//        PyObject result = interpreter.get("result");
-//        return result.toString().split(",");
-//    }
-//
-//    public List<String> parseResult(String symptom) {
-//        String[] result = classifySymptom(symptom);
-//        String chapterName = result[0];
-//        String subChapterName = result[1];
-//        String chapterId = result[2];
-//        String subChapterId = result[3];
-//        return Arrays.asList(chapterName, subChapterName, chapterId, subChapterId);
-//    }
+
+    public List<String> classifyInput(String symptom) throws IOException {
+        String path = "target/keywordClassify.py";
+        ProcessBuilder processBuilder = new ProcessBuilder("python2.7", path, "--arg1", symptom);
+        Process process = processBuilder.start();
+        processBuilder.redirectErrorStream(true);
+
+        BufferedReader bfr = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line = "";
+        List<String> output = new ArrayList<>();
+
+        while ((line = bfr.readLine()) != null) {
+            output.add(line);
+        }
+        bfr.close();
+
+        return output;
+    }
+
 }
