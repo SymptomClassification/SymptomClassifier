@@ -126,7 +126,7 @@ public class ClassifiedSymptomRepository {
 
     public Optional<ClassifiedSymptom> updateSymptom(ClassifiedSymptom symptom, int id) {
         Optional<ClassifiedSymptom> op = fetchSymptomWithSymptomId(id);
-        String update = "UPDATE classifiedsymptom SET name = ?, chapterId = ?, subchapterId = ?, secondsubId = ? WHERE symptomId = ?";
+        String update = "UPDATE classifiedsymptom SET symptomId = ?, chapterId = ?, subchapterId = ?, secondsubId = ? WHERE symptomId = ?";
 
         if (!op.isPresent()) {
             op = Optional.empty();

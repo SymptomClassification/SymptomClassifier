@@ -43,20 +43,20 @@ public class SymptomClassificationControllerTest {
 
     @Test
     public void testFindClassifiedSymptomWithName() throws Exception {
-        ClassifiedSymptom symptom = new ClassifiedSymptom(4, "symptom2.1", 2, 2, 2);
-        given(service.fetchClassifiedSymptomWitSymptomId("symptom2.1")).willReturn(symptom);
-        mockMvc.perform(get("/api/v1/classifiedSymptoms/findClassifiedSymptomWithName/{name}", "symptom2.1"))
+        ClassifiedSymptom symptom = new ClassifiedSymptom(4, 1, 2, 2, 2);
+        given(service.fetchClassifiedSymptomWitSymptomId(1)).willReturn(symptom);
+        mockMvc.perform(get("/classifiedSymptoms/classifiedSymptom/{id}", 1))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void testUpdateClassifiedSymptom() throws Exception {
 
-        ClassifiedSymptom symptom = new ClassifiedSymptom(1, "Fever", 1, 2, 3);
+        ClassifiedSymptom symptom = new ClassifiedSymptom(1, 1, 1, 2, 3);
 
-        ClassifiedSymptom mockClassifiedSymptom = new ClassifiedSymptom(1, "Fever", 1, 2, 3);
+        ClassifiedSymptom mockClassifiedSymptom = new ClassifiedSymptom(1, 1, 1, 2, 3);
 
-        mockMvc.perform(put("/api/v1/classifiedSymptoms/updateClassifiedSymptom/{name}", "Fever")
+        mockMvc.perform(put("/classifiedSymptoms/update/{id}", 1)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(symptom)))
                 .andExpect(status().isOk());

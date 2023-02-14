@@ -38,7 +38,7 @@ public class SymptomClassificationRepositoryTest {
         PowerMockito.mockStatic(DriverManager.class);
         PowerMockito.when(DriverManager.getConnection(anyString())).thenReturn(mockConnection);
 
-        ClassifiedSymptom classifiedSymptom = new ClassifiedSymptom(1, "test", 1, 2, 3);
+        ClassifiedSymptom classifiedSymptom = new ClassifiedSymptom(1, 1, 1, 2, 3);
 
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeUpdate()).thenReturn(1);
@@ -46,9 +46,9 @@ public class SymptomClassificationRepositoryTest {
 
         ClassifiedSymptom savedSymptom = classifiedSymptomRepository.saveSymptom(classifiedSymptom);
 
-        verify(mockConnection).prepareStatement("INSERT INTO classifiedsymptom (name, chapterId, subchapterId, secondsubId) " +
+        verify(mockConnection).prepareStatement("INSERT INTO classifiedsymptom (symptomId, chapterId, subchapterId, secondsubId) " +
                 " VALUES (?, ?, ?, ?)");
-        verify(mockPreparedStatement).setString(1, "test");
+        verify(mockPreparedStatement).setInt(1, 1);
         verify(mockPreparedStatement).setInt(2, 1);
         verify(mockPreparedStatement).setInt(3, 2);
         verify(mockPreparedStatement).setInt(4, 3);
