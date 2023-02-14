@@ -44,7 +44,7 @@ public class SymptomClassificationControllerTest {
     @Test
     public void testFindClassifiedSymptomWithName() throws Exception {
         ClassifiedSymptom symptom = new ClassifiedSymptom(4, "symptom2.1", 2, 2, 2);
-        given(service.fetchClassifiedSymptomWithName("symptom2.1")).willReturn(symptom);
+        given(service.fetchClassifiedSymptomWitSymptomId("symptom2.1")).willReturn(symptom);
         mockMvc.perform(get("/api/v1/classifiedSymptoms/findClassifiedSymptomWithName/{name}", "symptom2.1"))
                 .andExpect(status().isOk());
     }

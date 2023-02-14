@@ -14,7 +14,7 @@ public class ClassifiedSymptom {
     @Id
     @GeneratedValue
     private int id;
-    private String name;
+    private int symptomId;
     private int chapterId;
     private int subchapterId;
     private int secondsubId;

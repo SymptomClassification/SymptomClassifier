@@ -1,7 +1,7 @@
 package com.lancaster.SymptomChapter;
 
 import com.lancaster.SymptomChapter.model.ClassifiedSymptom;
-import com.lancaster.SymptomChapter.repository.SymptomRepository;
+import com.lancaster.SymptomChapter.repository.ClassifiedSymptomRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -31,7 +31,7 @@ public class SymptomClassificationRepositoryTest {
     private PreparedStatement mockPreparedStatement;
 
     @InjectMocks
-    private SymptomRepository classifiedSymptomRepository;
+    private ClassifiedSymptomRepository classifiedSymptomRepository;
 
     @Test
     public void testSaveSymptom() throws SQLException {

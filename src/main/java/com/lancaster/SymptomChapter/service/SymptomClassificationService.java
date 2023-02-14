@@ -10,9 +10,9 @@ public interface SymptomClassificationService {
 
     ClassifiedSymptom saveClassifiedSymptom(ClassifiedSymptom classifiedSymptom);
 
-    ClassifiedSymptom fetchClassifiedSymptomWithName(String name);
+    ClassifiedSymptom fetchClassifiedSymptomWitSymptomId(int symptomId);
 
-    ClassifiedSymptom updateClassifiedSymptom(ClassifiedSymptom classifiedSymptom, String name);
+    ClassifiedSymptom updateClassifiedSymptom(ClassifiedSymptom classifiedSymptom, int symptomId);
 
     List<String> classifySymptom(String symptom);
 

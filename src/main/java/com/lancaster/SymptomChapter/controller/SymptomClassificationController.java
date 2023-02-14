@@ -30,16 +30,16 @@ public class SymptomClassificationController {
         return new ResponseEntity<>(service.saveClassifiedSymptom(symptom), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "classifiedSymptom/{name}", method = RequestMethod.GET, produces = {
+    @RequestMapping(value = "classifiedSymptom/{id}", method = RequestMethod.GET, produces = {
             MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ClassifiedSymptom> findClassifiedSymptomWithName(@PathVariable("name") String name) {
-        return new ResponseEntity<>(service.fetchClassifiedSymptomWithName(name), HttpStatus.OK);
+    public ResponseEntity<ClassifiedSymptom> findClassifiedSymptomWithName(@PathVariable("id") int symptomId) {
+        return new ResponseEntity<>(service.fetchClassifiedSymptomWitSymptomId(symptomId), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "update/{name}", method = RequestMethod.PUT, produces = {
+    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT, produces = {
             MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ClassifiedSymptom> updateClassifiedSymptom(@RequestBody ClassifiedSymptom symptom, @PathVariable("name") String name) {
-        ClassifiedSymptom c = service.updateClassifiedSymptom(symptom, name);
+    public ResponseEntity<ClassifiedSymptom> updateClassifiedSymptom(@RequestBody ClassifiedSymptom symptom, @PathVariable("id") int symptomId) {
+        ClassifiedSymptom c = service.updateClassifiedSymptom(symptom, symptomId);
         return new ResponseEntity<>(c, HttpStatus.OK);
     }
 

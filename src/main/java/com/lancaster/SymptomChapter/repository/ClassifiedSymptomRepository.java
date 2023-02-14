@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class SymptomRepository {
+public class ClassifiedSymptomRepository {
 
     private Connection con = null;
 
@@ -44,7 +44,7 @@ public class SymptomRepository {
             while (rs.next()) {
                 symptom = new ClassifiedSymptom();
                 symptom.setId(rs.getInt("id"));
-                symptom.setName(rs.getString("name"));
+                symptom.setSymptomId(rs.getInt("symptomId"));
                 symptom.setChapterId(rs.getInt("chapterId"));
                 symptom.setSubchapterId(rs.getInt("subchapterId"));
                 symptom.setSecondsubId(rs.getInt("secondsubId"));
@@ -57,13 +57,13 @@ public class SymptomRepository {
     }
 
     public ClassifiedSymptom saveSymptom(ClassifiedSymptom classifiedSymptom) {
-        String create = "INSERT INTO classifiedsymptom (name, chapterId, subchapterId, secondsubId) " +
+        String create = "INSERT INTO classifiedsymptom (symptomId, chapterId, subchapterId, secondsubId) " +
                 " VALUES (?, ?, ?, ?)";
 
 
         try {
             PreparedStatement stm = getDBConnection().prepareStatement(create);
-            stm.setString(1, classifiedSymptom.getName());
+            stm.setInt(1, classifiedSymptom.getSymptomId());
             stm.setInt(2, classifiedSymptom.getChapterId());
             stm.setInt(3, classifiedSymptom.getSubchapterId());
             stm.setInt(4, classifiedSymptom.getSecondsubId());
@@ -86,7 +86,7 @@ public class SymptomRepository {
 
             if (rs.next()) {
                 symptom.setId(rs.getInt("id"));
-                symptom.setName(rs.getString("name"));
+                symptom.setSymptomId(rs.getInt("symptomId"));
                 symptom.setChapterId(rs.getInt("chapterId"));
                 symptom.setSubchapterId(rs.getInt("subchapterId"));
                 symptom.setSecondsubId(rs.getInt("secondsubId"));
@@ -99,10 +99,10 @@ public class SymptomRepository {
         return ch;
     }
 
-    public Optional<ClassifiedSymptom> fetchSymptomWithName(String name) {
+    public Optional<ClassifiedSymptom> fetchSymptomWithSymptomId(int id) {
         Optional<ClassifiedSymptom> op = Optional.empty();
         ClassifiedSymptom symptom = new ClassifiedSymptom();
-        String select = "SELECT * FROM classifiedsymptom WHERE name = '" + name + "'";
+        String select = "SELECT * FROM classifiedsymptom WHERE symptomId = " + id;
 
         try {
             Statement stm = getDBConnection().createStatement();
@@ -110,7 +110,7 @@ public class SymptomRepository {
 
             while (rs.next()) {
                 symptom.setId(rs.getInt("id"));
-                symptom.setName(rs.getString("name"));
+                symptom.setSymptomId(rs.getInt("symptomId"));
                 symptom.setChapterId(rs.getInt("chapterId"));
                 symptom.setSubchapterId(rs.getInt("subchapterId"));
                 symptom.setSecondsubId(rs.getInt("secondsubId"));
@@ -124,9 +124,9 @@ public class SymptomRepository {
         return op;
     }
 
-    public Optional<ClassifiedSymptom> updateSymptom(ClassifiedSymptom symptom, String name) {
-        Optional<ClassifiedSymptom> op = fetchSymptomWithName(name);
-        String update = "UPDATE classifiedsymptom SET name = ?, chapterId = ?, subchapterId = ?, secondsubId = ? WHERE name = ?";
+    public Optional<ClassifiedSymptom> updateSymptom(ClassifiedSymptom symptom, int id) {
+        Optional<ClassifiedSymptom> op = fetchSymptomWithSymptomId(id);
+        String update = "UPDATE classifiedsymptom SET name = ?, chapterId = ?, subchapterId = ?, secondsubId = ? WHERE symptomId = ?";
 
         if (!op.isPresent()) {
             op = Optional.empty();
@@ -135,13 +135,13 @@ public class SymptomRepository {
 
         try {
             PreparedStatement stm = getDBConnection().prepareStatement(update);
-            stm.setString(1, symptom.getName());
+            stm.setInt(1, symptom.getSymptomId());
             stm.setInt(2, symptom.getChapterId());
             stm.setInt(3, symptom.getSubchapterId());
             stm.setInt(4, symptom.getSecondsubId());
-            stm.setString(5, name);
+            stm.setInt(5, id);
             stm.executeUpdate();
-            op = fetchSymptomWithName(symptom.getName());
+            op = fetchSymptomWithSymptomId(symptom.getSymptomId());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
