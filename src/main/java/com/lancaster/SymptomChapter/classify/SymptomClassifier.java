@@ -9,10 +9,15 @@ import java.util.List;
 public class SymptomClassifier {
 
     public List<String> classifyInput(String symptom) throws IOException {
-        String path = "target/keywordClassify.py";
-        ProcessBuilder processBuilder = new ProcessBuilder("python2.7", path, "--arg1", symptom);
-        Process process = processBuilder.start();
+        List<String> command = new ArrayList<>();
+        command.add("python2.7");
+        command.add("target/keywordClassify.py");
+        command.add(symptom);
+
+        ProcessBuilder processBuilder = new ProcessBuilder(command);
         processBuilder.redirectErrorStream(true);
+
+        Process process = processBuilder.start();
 
         BufferedReader bfr = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line = "";
