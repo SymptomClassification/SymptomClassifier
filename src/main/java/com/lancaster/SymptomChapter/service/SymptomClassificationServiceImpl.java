@@ -47,13 +47,4 @@ public class SymptomClassificationServiceImpl implements SymptomClassificationSe
         }
     }
 
-    @Override
-    public List<String> printHelloWorld(String arg) {
-        try {
-            return symptomClassifier.printHelloWorld(arg);
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 }
