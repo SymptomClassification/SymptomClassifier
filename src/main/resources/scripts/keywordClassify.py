@@ -122,7 +122,136 @@ def pipeline(symptom):
 
     chaptersRequest = requests.get('http://dagere.comiles.eu:8090/chapters')
     if chaptersRequest.status_code == 200:
-        chapters = chaptersRequest.json()
+        chapters = [
+            {
+                "id": 1,
+                "name": "Vertigo "
+            },
+            {
+                "id": 2,
+                "name": "Head outer "
+            },
+            {
+                "id": 3,
+                "name": "Head inner "
+            },
+            {
+                "id": 4,
+                "name": "Eye outer "
+            },
+            {
+                "id": 5,
+                "name": "Eye inner "
+            },
+            {
+                "id": 6,
+                "name": "Vision "
+            },
+            {
+                "id": 7,
+                "name": "Ear outer "
+            },
+            {
+                "id": 8,
+                "name": "Ear inner "
+            },
+            {
+                "id": 9,
+                "name": "Hearing "
+            },
+            {
+                "id": 10,
+                "name": "Nose outer "
+            },
+            {
+                "id": 11,
+                "name": "Nose inner "
+            },
+            {
+                "id": 12,
+                "name": "Rhinitis "
+            },
+            {
+                "id": 13,
+                "name": "Face "
+            },
+            {
+                "id": 14,
+                "name": "Mouth outer "
+            },
+            {
+                "id": 15,
+                "name": "Mouth inner "
+            },
+            {
+                "id": 16,
+                "name": "Tongue "
+            },
+            {
+                "id": 17,
+                "name": "Taste "
+            },
+            {
+                "id": 18,
+                "name": "Jaws teeth "
+            },
+            {
+                "id": 19,
+                "name": "Appetite "
+            },
+            {
+                "id": 20,
+                "name": "Thirst "
+            },
+            {
+                "id": 21,
+                "name": "Food drink "
+            },
+            {
+                "id": 22,
+                "name": "Throat internal "
+            },
+            {
+                "id": 23,
+                "name": "Belching "
+            },
+            {
+                "id": 24,
+                "name": "Nausea vomiting "
+            },
+            {
+                "id": 25,
+                "name": "Indigestion dyspepsia "
+            },
+            {
+                "id": 26,
+                "name": "Stomach "
+            },
+            {
+                "id": 27,
+                "name": "Abdomen internal "
+            },
+            {
+                "id": 28,
+                "name": "Intestine "
+            },
+            {
+                "id": 29,
+                "name": "Anus perineum "
+            },
+            {
+                "id": 30,
+                "name": "Stool "
+            },
+            {
+                "id": 31,
+                "name": "Abdomen external "
+            },
+            {
+                "id": 32,
+                "name": "Groin pubic region "
+            }
+        ]
 
     subchaptersRequest = requests.get('http://dagere.comiles.eu:8094/subchapters')
     if subchaptersRequest.status_code == 200:
