@@ -10,7 +10,7 @@ public class SymptomClassifier {
 
     public List<String> classifyInput(String symptom) throws IOException, InterruptedException {
         List<String> command = new ArrayList<>();
-        command.add("python2.7");
+        command.add("python3");
         command.add("target/keywordClassify.py");
         command.add(symptom);
 
@@ -39,7 +39,7 @@ public class SymptomClassifier {
 
     public List<String> printHelloWorld(String arg) throws IOException, InterruptedException {
         List<String> command = new ArrayList<>();
-        command.add("python2.7");
+        command.add("python3");
         command.add("target/hello_world.py");
         command.add(arg);
 
