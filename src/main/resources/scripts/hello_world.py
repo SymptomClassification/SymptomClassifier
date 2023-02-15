@@ -3,7 +3,7 @@ import urllib.request
 import json
 
 def main(argument):
-    url_chapters = 'http://dagere.comiles.eu:8090/chapters'
+    url_chapters = 'https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&ac=0&unit=metric&output=json&tzshift=0'
 
     with urllib.request.urlopen(url_chapters) as response:
         if response.status == 200:
