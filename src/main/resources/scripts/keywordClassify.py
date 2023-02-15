@@ -121,21 +121,21 @@ def pipeline(symptom):
     symptom_subchapter = []
     final_output = set()
 
-    url_chapters = 'http://dagere.comiles.eu:8090/chapters'
+    url_chapters = 'http://localhost:8090/chapters'
 
     with urllib.request.urlopen(url_chapters) as response:
         if response.status == 200:
             json_data = response.read().decode('utf-8')
             chapters = json.loads(json_data)
 
-    url_subchapters = 'http://dagere.comiles.eu:8094/subchapters'
+    url_subchapters = 'http://localhost:8094/subchapters'
 
     with urllib.request.urlopen(url_subchapters) as response:
         if response.status == 200:
             json_data = response.read().decode('utf-8')
             subchapters = json.loads(json_data)
 
-    url_subtitles = 'http://dagere.comiles.eu:8098/subtitles'
+    url_subtitles = 'http://localhost:8098/subtitles'
 
     with urllib.request.urlopen(url_subtitles) as response:
         if response.status == 200:
