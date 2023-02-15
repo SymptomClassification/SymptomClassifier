@@ -1,7 +1,7 @@
 import re
 import json
 import sys
-import urllib
+import urllib.request
 
 
 subchapters_dict = []
