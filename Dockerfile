@@ -7,6 +7,7 @@ COPY target ./target
 
 # Copy the Python script
 COPY src/main/resources/scripts/keywordClassify.py ./target
+COPY src/main/resources/scripts/hello_world.py ./target
 
 # Install Python 2.7 and the required dependencies
 RUN apt-get update && \

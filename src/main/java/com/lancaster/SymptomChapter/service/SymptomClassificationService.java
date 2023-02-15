@@ -16,4 +16,6 @@ public interface SymptomClassificationService {
 
     List<String> classifySymptom(String symptom);
 
+    List<String> printHelloWorld();
+
 }

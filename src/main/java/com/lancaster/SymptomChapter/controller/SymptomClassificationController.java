@@ -50,4 +50,11 @@ public class SymptomClassificationController {
         return new ResponseEntity<>(c, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "printHelloWorld", method = RequestMethod.GET, produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<String>> printHelloWorld() {
+        List<String> c = service.printHelloWorld();
+        return new ResponseEntity<>(c, HttpStatus.OK);
+    }
+
 }
