@@ -26,12 +26,11 @@ public class SymptomClassifier {
         return output;
     }
 
-    public List<String> printHelloWorld() throws IOException, InterruptedException {
-        String argument = "test"; // Replace this with the argument you want to pass
+    public List<String> printHelloWorld(String arg) throws IOException, InterruptedException {
         List<String> command = new ArrayList<>();
         command.add("python2.7");
         command.add("target/hello_world.py");
-        command.add(argument);
+        command.add(arg);
 
         ProcessBuilder processBuilder = new ProcessBuilder(command);
         Process process = processBuilder.start();

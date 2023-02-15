@@ -7,14 +7,14 @@ pipeline {
                 git branch: 'master', url: 'https://dagere.comiles.eu/git/SymptomClassification/SymptomChapterService'
             }
         }
+        stage('Test') {
+                    steps {
+                        sh './mvnw test'
+                    }
+                }
         stage('Maven Package') {
             steps {
                 sh './mvnw clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh './mvnw test'
             }
         }
         stage('Build Docker Images') {
