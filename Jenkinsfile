@@ -8,10 +8,10 @@ pipeline {
             }
         }
         stage('Test') {
-                    steps {
-                        sh './mvnw test'
-                    }
-                }
+            steps {
+              sh './mvnw test'
+            }
+        }
         stage('Maven Package') {
             steps {
                 sh './mvnw clean package'

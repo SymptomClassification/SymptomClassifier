@@ -42,7 +42,7 @@ public class SymptomClassificationServiceImpl implements SymptomClassificationSe
     public List<String> classifySymptom(String symptom) {
         try {
             return symptomClassifier.classifyInput(symptom);
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
