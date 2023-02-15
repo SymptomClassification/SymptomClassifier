@@ -120,8 +120,9 @@ def pipeline(symptom):
     symptom_subchapter = []
     final_output = set()
 
-    chaptersRequest = requests.get('http://dagere.comiles.eu:8090/chapters')
-    if chaptersRequest.status_code == 200:
+    # chaptersRequest = requests.get('http://dagere.comiles.eu:8090/chapters')
+    # if chaptersRequest.status_code == 200:
+    if true:
         chapters = [
             {
                 "id": 1,
@@ -253,8 +254,9 @@ def pipeline(symptom):
             }
         ]
 
-    subchaptersRequest = requests.get('http://dagere.comiles.eu:8094/subchapters')
-    if subchaptersRequest.status_code == 200:
+    # subchaptersRequest = requests.get('http://dagere.comiles.eu:8094/subchapters')
+    # if subchaptersRequest.status_code == 200:
+    if true:
         subchapters = [{
             "id": 1,
             "name": "General",
@@ -982,8 +984,9 @@ def pipeline(symptom):
             }
         ]
 
-    subtitlesRequest = requests.get('http://dagere.comiles.eu:8098/subtitles')
-    if subtitlesRequest.status_code == 200:
+    # subtitlesRequest = requests.get('http://dagere.comiles.eu:8098/subtitles')
+    # if subtitlesRequest.status_code == 200:
+    if true:
         subtitles = [
             {
                 "id": 1,
