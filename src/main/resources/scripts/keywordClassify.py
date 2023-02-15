@@ -162,6 +162,6 @@ def pipeline(symptom):
 if __name__ == '__main__':
     # classification = pipeline(" ".join(sys.argv[1:]))
     classification = pipeline("I have a headache")
-    print(classification)
+    print("classification")
 
 
