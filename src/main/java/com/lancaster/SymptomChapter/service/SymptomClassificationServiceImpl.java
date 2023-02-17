@@ -20,22 +20,22 @@ public class SymptomClassificationServiceImpl implements SymptomClassificationSe
 
     @Override
     public List<ClassifiedSymptom> fetchClassifiedSymptoms() {
-        return repo.fetchSymptoms();
+        return repo.fetchClassifiedSymptoms();
     }
 
     @Override
     public ClassifiedSymptom saveClassifiedSymptom(ClassifiedSymptom classifiedSymptom) {
-        return repo.saveSymptom(classifiedSymptom);
+        return repo.saveClassifiedSymptom(classifiedSymptom);
     }
 
     @Override
     public ClassifiedSymptom fetchClassifiedSymptomWitSymptomId(int symptomId) {
-        return repo.fetchSymptomWithSymptomId(symptomId).get();
+        return repo.fetchClassifiedSymptomWithSymptomId(symptomId).get();
     }
 
     @Override
     public ClassifiedSymptom updateClassifiedSymptom(ClassifiedSymptom classifiedSymptom, int symptomId) {
-        return repo.updateSymptom(classifiedSymptom, symptomId).get();
+        return repo.updateClassifiedSymptom(classifiedSymptom, symptomId).get();
     }
 
     @Override

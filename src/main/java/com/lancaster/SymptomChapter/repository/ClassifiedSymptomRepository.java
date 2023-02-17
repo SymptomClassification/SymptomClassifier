@@ -32,7 +32,7 @@ public class ClassifiedSymptomRepository {
         return con;
     }
 
-    public List<ClassifiedSymptom> fetchSymptoms() {
+    public List<ClassifiedSymptom> fetchClassifiedSymptoms() {
         List<ClassifiedSymptom> symptoms = new ArrayList<>();
         ClassifiedSymptom symptom;
         String selectAll = "SELECT * FROM classifiedsymptom";
@@ -56,7 +56,7 @@ public class ClassifiedSymptomRepository {
         return symptoms;
     }
 
-    public ClassifiedSymptom saveSymptom(ClassifiedSymptom classifiedSymptom) {
+    public ClassifiedSymptom saveClassifiedSymptom(ClassifiedSymptom classifiedSymptom) {
         String create = "INSERT INTO classifiedsymptom (symptomId, chapterId, subchapterId, secondsubId) " +
                 " VALUES (?, ?, ?, ?)";
 
@@ -75,7 +75,7 @@ public class ClassifiedSymptomRepository {
         return classifiedSymptom;
     }
 
-    public Optional<ClassifiedSymptom> fetchSymptomWithId(int id) {
+    public Optional<ClassifiedSymptom> fetchClassifiedSymptomWithId(int id) {
         Optional<ClassifiedSymptom> ch = Optional.empty();
         ClassifiedSymptom symptom = new ClassifiedSymptom();
         String select = "SELECT * FROM classifiedsymptom WHERE id = " + id;
@@ -99,7 +99,7 @@ public class ClassifiedSymptomRepository {
         return ch;
     }
 
-    public Optional<ClassifiedSymptom> fetchSymptomWithSymptomId(int id) {
+    public Optional<ClassifiedSymptom> fetchClassifiedSymptomWithSymptomId(int id) {
         Optional<ClassifiedSymptom> op = Optional.empty();
         ClassifiedSymptom symptom = new ClassifiedSymptom();
         String select = "SELECT * FROM classifiedsymptom WHERE symptomId = " + id;
@@ -124,13 +124,12 @@ public class ClassifiedSymptomRepository {
         return op;
     }
 
-    public Optional<ClassifiedSymptom> updateSymptom(ClassifiedSymptom symptom, int id) {
-        Optional<ClassifiedSymptom> op = fetchSymptomWithSymptomId(id);
+    public Optional<ClassifiedSymptom> updateClassifiedSymptom(ClassifiedSymptom symptom, int id) {
+        Optional<ClassifiedSymptom> op = fetchClassifiedSymptomWithSymptomId(id);
         String update = "UPDATE classifiedsymptom SET symptomId = ?, chapterId = ?, subchapterId = ?, secondsubId = ? WHERE symptomId = ?";
 
         if (!op.isPresent()) {
-            op = Optional.empty();
-            return op;
+            return Optional.empty();
         }
 
         try {
@@ -141,7 +140,7 @@ public class ClassifiedSymptomRepository {
             stm.setInt(4, symptom.getSecondsubId());
             stm.setInt(5, id);
             stm.executeUpdate();
-            op = fetchSymptomWithSymptomId(symptom.getSymptomId());
+            op = fetchClassifiedSymptomWithSymptomId(symptom.getSymptomId());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

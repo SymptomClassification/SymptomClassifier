@@ -1,0 +1,120 @@
+package com.lancaster.SymptomChapter.repository;
+
+import com.lancaster.SymptomChapter.model.Symptom;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public class SymptomRepository {
+    private Connection con = null;
+
+    @Value("${spring.datasource.url}")
+    String dbUrl;
+    @Value("${spring.datasource.username}")
+    String userName;
+    @Value("${spring.datasource.password}")
+    String password;
+
+    private Connection getDBConnection() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(dbUrl, userName, password);
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
+        }
+
+        return con;
+    }
+
+    public List<Symptom> fetchSymptoms() {
+        List<Symptom> symptoms = new ArrayList<>();
+        Symptom symptom;
+        String selectAll = "SELECT * FROM symptoms";
+
+        try {
+            Statement stm = getDBConnection().createStatement();
+            ResultSet rs = stm.executeQuery(selectAll);
+
+            while (rs.next()) {
+                symptom = new Symptom();
+                symptom.setId(rs.getInt("id"));
+                symptom.setSymptom(rs.getString("symptom"));
+                symptoms.add(symptom);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return symptoms;
+    }
+
+    public Symptom saveSymptom(Symptom symptom) {
+        String create = "INSERT INTO symptoms (symptom) VALUES (?)";
+        try {
+            PreparedStatement stm = getDBConnection().prepareStatement(create);
+            stm.setString(1, symptom.getSymptom());
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return symptom;
+    }
+
+    public void deleteSymptom(int id) {
+        String delete = "DELETE FROM symptoms WHERE id = ?";
+        try {
+            PreparedStatement stm = getDBConnection().prepareStatement(delete);
+            stm.setInt(1, id);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Optional<Symptom> fetchSymptomWithId(int id) {
+        Optional<Symptom> op = Optional.empty();
+        String select = "SELECT * FROM symptoms WHERE id = ?";
+        Symptom symptom;
+        try {
+            PreparedStatement stm = getDBConnection().prepareStatement(select);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                symptom = new Symptom();
+                symptom.setId(rs.getInt("id"));
+                symptom.setSymptom(rs.getString("symptom"));
+                op = Optional.of(symptom);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return op;
+    }
+
+    public Optional<Symptom> updateSymptom(Symptom symptom, int id) {
+        Optional<Symptom> op = fetchSymptomWithId(id);
+
+        String update = "UPDATE symptoms SET symptom = ? WHERE id = ?";
+
+        if (!op.isPresent()) {
+            return Optional.empty();
+        }
+
+        try {
+            PreparedStatement stm = getDBConnection().prepareStatement(update);
+            stm.setString(1, symptom.getSymptom());
+            stm.setInt(2, id);
+            stm.executeUpdate();
+            op = fetchSymptomWithId(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return op;
+    }
+
+
+}

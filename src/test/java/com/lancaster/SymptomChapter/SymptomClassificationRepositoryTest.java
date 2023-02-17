@@ -44,7 +44,7 @@ public class SymptomClassificationRepositoryTest {
         when(mockPreparedStatement.executeUpdate()).thenReturn(1);
 
 
-        ClassifiedSymptom savedSymptom = classifiedSymptomRepository.saveSymptom(classifiedSymptom);
+        ClassifiedSymptom savedSymptom = classifiedSymptomRepository.saveClassifiedSymptom(classifiedSymptom);
 
         verify(mockConnection).prepareStatement("INSERT INTO classifiedsymptom (symptomId, chapterId, subchapterId, secondsubId) " +
                 " VALUES (?, ?, ?, ?)");
