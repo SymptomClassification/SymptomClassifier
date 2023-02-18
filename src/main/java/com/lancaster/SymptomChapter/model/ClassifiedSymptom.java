@@ -1,6 +1,7 @@
 package com.lancaster.SymptomChapter.model;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
@@ -16,8 +17,9 @@ public class ClassifiedSymptom {
     private int id;
     private int symptomId;
     private int chapterId;
+    @Nullable
     private int subchapterId;
+    @Nullable
     private int secondsubId;
-
 
 }

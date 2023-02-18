@@ -52,16 +52,24 @@ public class SymptomRepository {
         return symptoms;
     }
 
-    public Symptom saveSymptom(Symptom symptom) {
+    public int saveSymptom(Symptom symptom) {
         String create = "INSERT INTO symptoms (symptom) VALUES (?)";
         try {
-            PreparedStatement stm = getDBConnection().prepareStatement(create);
+            PreparedStatement stm = getDBConnection().prepareStatement(create, Statement.RETURN_GENERATED_KEYS);
             stm.setString(1, symptom.getSymptom());
             stm.executeUpdate();
+            // Retrieve the auto-generated ID
+            ResultSet rs = stm.getGeneratedKeys();
+            if (rs.next()) {
+                int id = rs.getInt(1);
+                symptom.setId(id);
+            } else {
+                throw new SQLException("No ID was generated");
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return symptom;
+        return symptom.getId();
     }
 
     public void deleteSymptom(int id) {

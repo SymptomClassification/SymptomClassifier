@@ -25,7 +25,7 @@ public class SymptomController {
 
     @RequestMapping(value = "create", method = RequestMethod.POST, produces = {
             MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Symptom> createSymptom(@Validated @RequestBody Symptom symptom) {
+    public ResponseEntity<Integer> createSymptom(@Validated @RequestBody Symptom symptom) {
         return new ResponseEntity<>(service.saveSymptom(symptom), HttpStatus.OK);
     }
 
@@ -39,5 +39,12 @@ public class SymptomController {
             MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public Symptom updateSymptom(@RequestBody Symptom symptom, @PathVariable("id") int id) {
         return service.updateSymptom(symptom, id);
+    }
+
+    @RequestMapping(value = "classificationId/{name}", method = RequestMethod.GET, produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<List<Integer>>> getClassificationId(@PathVariable("name") String name) {
+        List<List<Integer>> c = service.getClassificationId(name);
+        return new ResponseEntity<>(c, HttpStatus.OK);
     }
 }
