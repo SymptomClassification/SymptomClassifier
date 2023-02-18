@@ -11,7 +11,7 @@ public class SymptomClassifier {
     public List<String> getClassificationDefinition(String symptom) throws IOException, InterruptedException {
         List<String> command = new ArrayList<>();
         command.add("python3");
-        command.add("src/main/resources/scripts/keywordClassifyName.py");
+        command.add("target/keywordClassifyName.py");
         command.add(symptom);
 
         ProcessBuilder processBuilder = new ProcessBuilder(command);
@@ -40,7 +40,7 @@ public class SymptomClassifier {
     public List<List<Integer>> getClassificationId(String symptom) throws IOException, InterruptedException {
         List<String> command = new ArrayList<>();
         command.add("python3");
-        command.add("src/main/resources/scripts/keywordClassifyId.py");
+        command.add("target/keywordClassifyId.py");
         command.add(symptom);
 
         ProcessBuilder processBuilder = new ProcessBuilder(command);
