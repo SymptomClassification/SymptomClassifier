@@ -52,14 +52,25 @@ public class ChapterRepository {
         return chapters;
     }
 
-    public void saveChapter(Chapter chapter) {
+    public int saveChapter(Chapter chapter) {
         String create = "INSERT INTO chapter (name) " +
-                " VALUES (?)";
+                " SELECT ? FROM DUAL " +
+                " WHERE NOT EXISTS (SELECT id FROM chapter WHERE name = ?)";
 
         try {
-            PreparedStatement stm = getDBConnection().prepareStatement(create);
+            PreparedStatement stm = getDBConnection().prepareStatement(create, Statement.RETURN_GENERATED_KEYS);
             stm.setString(1, chapter.getName());
-            stm.executeUpdate();
+            stm.setString(2, chapter.getName());
+            int affectedRows = stm.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Creating chapter failed, chapter with the same name already exists.");
+            }
+            ResultSet rs = stm.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else {
+                throw new SQLException("Creating chapter failed, no ID obtained.");
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

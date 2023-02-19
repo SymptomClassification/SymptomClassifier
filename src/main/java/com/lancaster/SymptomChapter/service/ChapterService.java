@@ -8,7 +8,7 @@ public interface ChapterService {
 
     List<Chapter> fetchChapters();
 
-    void saveChapter(Chapter chapter);
+    int saveChapter(Chapter chapter);
 
     Chapter fetchChapterWithName(String name);
 

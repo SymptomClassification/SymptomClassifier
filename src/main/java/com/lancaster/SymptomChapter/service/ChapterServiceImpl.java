@@ -20,8 +20,8 @@ public class ChapterServiceImpl implements ChapterService {
     }
 
     @Override
-    public void saveChapter(Chapter chapter) {
-        repo.saveChapter(chapter);
+    public int saveChapter(Chapter chapter) {
+        return repo.saveChapter(chapter);
     }
 
     @Override

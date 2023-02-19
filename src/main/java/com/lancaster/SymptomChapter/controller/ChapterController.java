@@ -26,9 +26,14 @@ public class ChapterController {
 
     @RequestMapping(value = "create", method = RequestMethod.POST, produces = {
             MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createChapter(@Validated @RequestBody Chapter chapter) {
-        service.saveChapter(chapter);
+    public ResponseEntity<?> createChapter(@Validated @RequestBody Chapter chapter) {
+        try {
+            int id = service.saveChapter(chapter);
+            return ResponseEntity.status(HttpStatus.CREATED).body(id);
+        } catch (RuntimeException e) {
+            String errorMessage = "Error creating chapter: " + e.getMessage();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+        }
     }
 
     @RequestMapping(value = "chapter/{name}", method = RequestMethod.GET, produces = {
