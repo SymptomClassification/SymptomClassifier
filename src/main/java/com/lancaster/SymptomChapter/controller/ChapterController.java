@@ -24,6 +24,7 @@ public class ChapterController {
         return service.fetchChapters();
     }
 
+    // TODO move error handling to service layer
     @RequestMapping(value = "create", method = RequestMethod.POST, produces = {
             MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> createChapter(@Validated @RequestBody Chapter chapter) {

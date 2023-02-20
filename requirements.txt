@@ -1,0 +1,5 @@
+spacy==3.5.0
+scispacy==0.5.1
+joblib==1.2.0
+scikit-learn==1.2.1
+
