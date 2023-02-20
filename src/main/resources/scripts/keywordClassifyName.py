@@ -161,7 +161,7 @@ def pipeline(symptom):
             else:
                 final_output.add(id["name"])
     if len(final_output) == 0:
-        final_output.add(0)
+        return 0
 
     #if len(chaptersId) == 0:
         #chaptersId.add(-1)
