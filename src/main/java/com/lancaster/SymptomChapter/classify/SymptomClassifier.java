@@ -4,14 +4,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SymptomClassifier {
 
-    public List<String> getClassificationDefinition(String symptom) throws IOException, InterruptedException {
+    public List<Map<String, String>> getClassificationDefinition(String symptom) throws IOException, InterruptedException {
         List<String> command = new ArrayList<>();
         command.add("python3");
-        command.add("target/keywordClassifyName.py");
+        command.add("src/main/resources/scripts/keywordClassifyName.py");
         command.add(symptom);
 
         ProcessBuilder processBuilder = new ProcessBuilder(command);
@@ -21,10 +23,23 @@ public class SymptomClassifier {
 
         BufferedReader bfr = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line;
-        List<String> output = new ArrayList<>();
+        List<Map<String, String>> output = new ArrayList<>();
 
         while ((line = bfr.readLine()) != null) {
-            output.add(line);
+            String[] chapters = line.split("\\], \\[");
+            for (String chapter : chapters) {
+                chapter = chapter.replaceAll("\\[|\\]", "");
+                String[] subChapters = chapter.split(", ");
+                for (String subChapter : subChapters) {
+                    String[] parts = subChapter.split(", ");
+                    if (parts.length == 2) {
+                        Map<String, String> chapterMap = new HashMap<>();
+                        chapterMap.put("chapterName", parts[0]);
+                        chapterMap.put("subchapterName", parts[1]);
+                        output.add(chapterMap);
+                    }
+                }
+            }
         }
 
         int exitCode = process.waitFor();
@@ -37,10 +52,13 @@ public class SymptomClassifier {
         return output;
     }
 
+
+
+
     public List<List<Integer>> getClassificationId(String symptom) throws IOException, InterruptedException {
         List<String> command = new ArrayList<>();
         command.add("python3");
-        command.add("target/keywordClassifyId.py");
+        command.add("src/main/resources/scripts/keywordClassifyId.py");
         command.add(symptom);
 
         ProcessBuilder processBuilder = new ProcessBuilder(command);
@@ -58,7 +76,7 @@ public class SymptomClassifier {
                 String[] tokens = line.replaceAll("\\[|\\]|\\s", "").split(",");
                 for (int i = 0; i < tokens.length; i += 2) {
                     int value1 = Integer.parseInt(tokens[i]);
-                    int value2 = Integer.parseInt(tokens[i+1]);
+                    int value2 = Integer.parseInt(tokens[i + 1]);
                     row.add(value1);
                     row.add(value2);
                     output.add(new ArrayList<>(row));
