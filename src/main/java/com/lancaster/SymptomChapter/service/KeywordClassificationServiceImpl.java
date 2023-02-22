@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Service
-public class SymptomClassificationServiceImpl implements SymptomClassificationService {
+public class KeywordClassificationServiceImpl implements KeywordClassificationService {
 
     @Autowired
     private ClassifiedSymptomRepository repo;
@@ -43,7 +44,7 @@ public class SymptomClassificationServiceImpl implements SymptomClassificationSe
     }
 
     @Override
-    public List<String> classifySymptom(String symptom) {
+    public List<Map<String, String>> classifySymptom(String symptom) {
         // Save symptom
         Symptom symptomModel = new Symptom();
         symptomModel.setSymptom(symptom);

@@ -1,7 +1,7 @@
 package com.lancaster.SymptomChapter.controller;
 
 import com.lancaster.SymptomChapter.model.ClassifiedSymptom;
-import com.lancaster.SymptomChapter.service.SymptomClassificationService;
+import com.lancaster.SymptomChapter.service.KeywordClassificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,13 +10,14 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/classifiedSymptoms")
-public class SymptomClassificationController {
+public class KeywordClassificationController {
 
     @Autowired
-    private SymptomClassificationService service;
+    private KeywordClassificationService service;
 
     @RequestMapping()
     public List<ClassifiedSymptom> fetchClassifiedSymptoms() {
@@ -45,8 +46,8 @@ public class SymptomClassificationController {
 
     @RequestMapping(value = "classifySymptom/{name}", method = RequestMethod.GET, produces = {
             MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<String>> classifySymptom(@PathVariable("name") String name) {
-        List<String> c = service.classifySymptom(name);
+    public ResponseEntity<List<Map<String, String>>> classifySymptom(@PathVariable("name") String name) {
+        List<Map<String, String>> c = service.classifySymptom(name);
         return new ResponseEntity<>(c, HttpStatus.OK);
     }
 

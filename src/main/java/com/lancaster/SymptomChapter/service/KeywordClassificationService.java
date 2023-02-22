@@ -3,8 +3,9 @@ package com.lancaster.SymptomChapter.service;
 import com.lancaster.SymptomChapter.model.ClassifiedSymptom;
 
 import java.util.List;
+import java.util.Map;
 
-public interface SymptomClassificationService {
+public interface KeywordClassificationService {
 
     List<ClassifiedSymptom> fetchClassifiedSymptoms();
 
@@ -14,6 +15,6 @@ public interface SymptomClassificationService {
 
     ClassifiedSymptom updateClassifiedSymptom(ClassifiedSymptom classifiedSymptom, int symptomId);
 
-    List<String> classifySymptom(String symptom);
+    List<Map<String, String>> classifySymptom(String symptom);
 
 }
