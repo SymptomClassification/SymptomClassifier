@@ -111,6 +111,7 @@ def match_subchapters(subchapters, chapters, subchapters_origdict, chapters_orig
         if t == "" or t == " ":
             chapters_set.remove(t)
     return set(chapters_set)
+
 def pipeline(symptom):
 
     chapters = {}
@@ -119,7 +120,7 @@ def pipeline(symptom):
 
     symptom_chapter = []
     symptom_subchapter = []
-    final_output = set()
+    final_output = []
 
     url_chapters = 'http://localhost:8090/chapters'
 
@@ -157,18 +158,14 @@ def pipeline(symptom):
                 if id["id"] == chapterId["id"]:
                     chapter_subchapter.append(chapterId["name"])
             if len(chapter_subchapter) != 0:
-                final_output.add(id["name"] + ", "+ " , ".join(chapter_subchapter))
+                final_output.append([id["name"], chapter_subchapter[0]])
             else:
-                final_output.add(id["name"])
+                final_output.append([id["name"], ""])
+
     if len(final_output) == 0:
         return 0
 
-    #if len(chaptersId) == 0:
-        #chaptersId.add(-1)
-    #if len(subchaptersId) == 0:
-        #subchaptersId.add(-1)
-
-    return [list(final_output)]
+    return final_output
 
 if __name__ == '__main__':
     classification = pipeline(" ".join(sys.argv[1:]))
