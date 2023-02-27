@@ -10,9 +10,8 @@ COPY src/main/resources/scripts/spacyClassification ./target/spacyClassification
 
 COPY requirements.txt ./target/requirements.txt
 
-# Copy the keywordClassification Python scripts
-COPY src/main/resources/scripts/keywordClassifyName.py ./target
-COPY src/main/resources/scripts/keywordClassifyId.py ./target
+COPY src/main/resources/scripts/keywordClassifyName.py ./src/main/resources/scripts/
+COPY src/main/resources/scripts/keywordClassifyId.py ./src/main/resources/scripts/
 
 # Install Python 3.9 and the required dependencies
 RUN apt-get update && \
