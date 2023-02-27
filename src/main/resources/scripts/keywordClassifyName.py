@@ -163,9 +163,9 @@ def pipeline(symptom):
                 final_output.append([id["name"], ""])
 
     if len(final_output) == 0:
-        return 0
+        return json.dumps([])
 
-    return list(final_output)
+    return json.dumps(final_output)
 
 if __name__ == '__main__':
     classification = pipeline(" ".join(sys.argv[1:]))

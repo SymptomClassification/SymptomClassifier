@@ -3,10 +3,7 @@ package com.lancaster.SymptomChapter.classify;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SymptomClassifier {
 
@@ -24,20 +21,23 @@ public class SymptomClassifier {
         BufferedReader bfr = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line;
         List<Map<String, String>> output = new ArrayList<>();
-
         while ((line = bfr.readLine()) != null) {
+            if (line.equals("[]")) {
+                return Arrays.asList(Collections.singletonMap("result", "0"));
+            }
             String[] chapters = line.split("\\], \\[");
             for (String chapter : chapters) {
                 chapter = chapter.replaceAll("\\[|\\]", "");
                 String[] subChapters = chapter.split(", ");
-                for (String subChapter : subChapters) {
-                    String[] parts = subChapter.split(", ");
-                    if (parts.length == 2) {
-                        Map<String, String> chapterMap = new HashMap<>();
-                        chapterMap.put("chapterName", parts[0]);
-                        chapterMap.put("subchapterName", parts[1]);
-                        output.add(chapterMap);
-                    }
+                if (subChapters.length == 1) {
+                    Map<String, String> chapterMap = new HashMap<>();
+                    chapterMap.put("chapterName", subChapters[0].replaceAll("\"", ""));
+                    output.add(chapterMap);
+                } else if (subChapters.length == 2) {
+                    Map<String, String> chapterMap = new HashMap<>();
+                    chapterMap.put("chapterName", subChapters[0].replaceAll("\"", ""));
+                    chapterMap.put("subchapterName", subChapters[1].replaceAll("\"", ""));
+                    output.add(chapterMap);
                 }
             }
         }
@@ -51,8 +51,6 @@ public class SymptomClassifier {
 
         return output;
     }
-
-
 
 
     public List<List<Integer>> getClassificationId(String symptom) throws IOException, InterruptedException {
