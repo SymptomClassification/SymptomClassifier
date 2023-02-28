@@ -27,7 +27,7 @@ public class SpacyClassificationController {
         return new ResponseEntity<>(c, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "fetchSpacyChapters", method = RequestMethod.GET, produces = {
+    @RequestMapping(value = "spacyChapters", method = RequestMethod.GET, produces = {
             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<SpacyChapters>> fetchSpacyChapters() {
         List<SpacyChapters> c = service.fetchSpacyChapters();
