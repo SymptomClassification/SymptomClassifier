@@ -1,5 +1,6 @@
 package com.lancaster.SymptomChapter.controller;
 
+import com.lancaster.SymptomChapter.model.SpacyChapters;
 import com.lancaster.SymptomChapter.service.SpacyClassificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,13 @@ public class SpacyClassificationController {
             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<String>> classifySymptom(@PathVariable("name") String name) {
         List<String> c = service.classifySymptom(name);
+        return new ResponseEntity<>(c, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "fetchSpacyChapters", method = RequestMethod.GET, produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<SpacyChapters>> fetchSpacyChapters() {
+        List<SpacyChapters> c = service.fetchSpacyChapters();
         return new ResponseEntity<>(c, HttpStatus.OK);
     }
 
