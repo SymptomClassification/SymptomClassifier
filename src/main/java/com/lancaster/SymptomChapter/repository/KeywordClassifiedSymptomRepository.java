@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class ClassifiedSymptomRepository {
+public class KeywordClassifiedSymptomRepository {
 
     private Connection con = null;
     private final String TABLE_NAME = "keywordclassifiedsymptom";

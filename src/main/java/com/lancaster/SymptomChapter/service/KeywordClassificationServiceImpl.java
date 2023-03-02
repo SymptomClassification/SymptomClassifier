@@ -3,7 +3,7 @@ package com.lancaster.SymptomChapter.service;
 import com.lancaster.SymptomChapter.classify.SymptomClassifier;
 import com.lancaster.SymptomChapter.model.KeywordClassifiedSymptom;
 import com.lancaster.SymptomChapter.model.Symptom;
-import com.lancaster.SymptomChapter.repository.ClassifiedSymptomRepository;
+import com.lancaster.SymptomChapter.repository.KeywordClassifiedSymptomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ import java.util.Map;
 public class KeywordClassificationServiceImpl implements KeywordClassificationService {
 
     @Autowired
-    private ClassifiedSymptomRepository repo;
+    private KeywordClassifiedSymptomRepository repo;
 
     @Autowired
     private SymptomService symptomService;

@@ -1,7 +1,7 @@
 package com.lancaster.SymptomChapter;
 
 import com.lancaster.SymptomChapter.model.KeywordClassifiedSymptom;
-import com.lancaster.SymptomChapter.repository.ClassifiedSymptomRepository;
+import com.lancaster.SymptomChapter.repository.KeywordClassifiedSymptomRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -15,7 +15,7 @@ import static org.mockito.Mockito.when;
 public class SymptomClassificationRepositoryTest {
 
     @Mock
-    private ClassifiedSymptomRepository mockRepository;
+    private KeywordClassifiedSymptomRepository mockRepository;
 
     @Test
     public void testSaveSymptom() {
