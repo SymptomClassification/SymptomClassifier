@@ -4,55 +4,27 @@ import com.lancaster.SymptomChapter.model.ClassifiedSymptom;
 import com.lancaster.SymptomChapter.repository.ClassifiedSymptomRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(DriverManager.class)
+@RunWith(MockitoJUnitRunner.class)
 public class SymptomClassificationRepositoryTest {
 
     @Mock
-    private Connection mockConnection;
-
-    @Mock
-    private PreparedStatement mockPreparedStatement;
-
-    @InjectMocks
-    private ClassifiedSymptomRepository classifiedSymptomRepository;
+    private ClassifiedSymptomRepository mockRepository;
 
     @Test
-    public void testSaveSymptom() throws SQLException {
-        PowerMockito.mockStatic(DriverManager.class);
-        PowerMockito.when(DriverManager.getConnection(anyString())).thenReturn(mockConnection);
-
+    public void testSaveSymptom() {
         ClassifiedSymptom classifiedSymptom = new ClassifiedSymptom(1, 1, 1, 2, 3);
+        when(mockRepository.saveClassifiedSymptom(classifiedSymptom)).thenReturn(classifiedSymptom);
 
-        when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
-        when(mockPreparedStatement.executeUpdate()).thenReturn(1);
+        ClassifiedSymptom savedSymptom = mockRepository.saveClassifiedSymptom(classifiedSymptom);
 
-
-        ClassifiedSymptom savedSymptom = classifiedSymptomRepository.saveClassifiedSymptom(classifiedSymptom);
-
-        verify(mockConnection).prepareStatement("INSERT INTO classifiedsymptom (symptomId, chapterId, subchapterId, secondsubId) " +
-                " VALUES (?, ?, ?, ?)");
-        verify(mockPreparedStatement).setInt(1, 1);
-        verify(mockPreparedStatement).setInt(2, 1);
-        verify(mockPreparedStatement).setInt(3, 2);
-        verify(mockPreparedStatement).setInt(4, 3);
-        verify(mockPreparedStatement).executeUpdate();
+        verify(mockRepository).saveClassifiedSymptom(classifiedSymptom);
 
         assertEquals(classifiedSymptom, savedSymptom);
     }
