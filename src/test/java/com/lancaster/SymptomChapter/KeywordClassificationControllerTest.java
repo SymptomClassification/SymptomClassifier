@@ -3,7 +3,7 @@ package com.lancaster.SymptomChapter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lancaster.SymptomChapter.controller.KeywordClassificationController;
-import com.lancaster.SymptomChapter.model.ClassifiedSymptom;
+import com.lancaster.SymptomChapter.model.KeywordClassifiedSymptom;
 import com.lancaster.SymptomChapter.service.KeywordClassificationService;
 import org.junit.Before;
 import org.junit.Test;
@@ -53,7 +53,7 @@ public class KeywordClassificationControllerTest {
 
     @Test
     public void testFindClassifiedSymptomWithName() throws Exception {
-        ClassifiedSymptom symptom = new ClassifiedSymptom(4, 1, 2, 2, 2);
+        KeywordClassifiedSymptom symptom = new KeywordClassifiedSymptom(4, 1, 2, 2, 2);
         given(service.fetchClassifiedSymptomWitSymptomId(1)).willReturn(symptom);
         mockMvc.perform(get("/classifiedSymptoms/classifiedSymptom/{id}", 1))
                 .andExpect(status().isOk());
@@ -62,9 +62,9 @@ public class KeywordClassificationControllerTest {
     @Test
     public void testUpdateClassifiedSymptom() throws Exception {
 
-        ClassifiedSymptom symptom = new ClassifiedSymptom(1, 1, 1, 2, 3);
+        KeywordClassifiedSymptom symptom = new KeywordClassifiedSymptom(1, 1, 1, 2, 3);
 
-        ClassifiedSymptom mockClassifiedSymptom = new ClassifiedSymptom(1, 1, 1, 2, 3);
+        KeywordClassifiedSymptom mockKeywordClassifiedSymptom = new KeywordClassifiedSymptom(1, 1, 1, 2, 3);
 
         mockMvc.perform(put("/classifiedSymptoms/update/{id}", 1)
                         .contentType(MediaType.APPLICATION_JSON)

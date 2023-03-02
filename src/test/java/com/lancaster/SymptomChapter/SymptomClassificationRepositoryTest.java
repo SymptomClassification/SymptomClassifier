@@ -1,6 +1,6 @@
 package com.lancaster.SymptomChapter;
 
-import com.lancaster.SymptomChapter.model.ClassifiedSymptom;
+import com.lancaster.SymptomChapter.model.KeywordClassifiedSymptom;
 import com.lancaster.SymptomChapter.repository.ClassifiedSymptomRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,14 +19,14 @@ public class SymptomClassificationRepositoryTest {
 
     @Test
     public void testSaveSymptom() {
-        ClassifiedSymptom classifiedSymptom = new ClassifiedSymptom(1, 1, 1, 2, 3);
-        when(mockRepository.saveClassifiedSymptom(classifiedSymptom)).thenReturn(classifiedSymptom);
+        KeywordClassifiedSymptom keywordClassifiedSymptom = new KeywordClassifiedSymptom(1, 1, 1, 2, 3);
+        when(mockRepository.saveClassifiedSymptom(keywordClassifiedSymptom)).thenReturn(keywordClassifiedSymptom);
 
-        ClassifiedSymptom savedSymptom = mockRepository.saveClassifiedSymptom(classifiedSymptom);
+        KeywordClassifiedSymptom savedSymptom = mockRepository.saveClassifiedSymptom(keywordClassifiedSymptom);
 
-        verify(mockRepository).saveClassifiedSymptom(classifiedSymptom);
+        verify(mockRepository).saveClassifiedSymptom(keywordClassifiedSymptom);
 
-        assertEquals(classifiedSymptom, savedSymptom);
+        assertEquals(keywordClassifiedSymptom, savedSymptom);
     }
 
 

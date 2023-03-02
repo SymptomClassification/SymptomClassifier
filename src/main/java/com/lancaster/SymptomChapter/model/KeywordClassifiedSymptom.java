@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClassifiedSymptom {
+public class KeywordClassifiedSymptom {
     @Id
     @GeneratedValue
     private int id;

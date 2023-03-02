@@ -1,6 +1,6 @@
 package com.lancaster.SymptomChapter.repository;
 
-import com.lancaster.SymptomChapter.model.ClassifiedSymptom;
+import com.lancaster.SymptomChapter.model.KeywordClassifiedSymptom;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -33,9 +33,9 @@ public class ClassifiedSymptomRepository {
         return con;
     }
 
-    public List<ClassifiedSymptom> fetchClassifiedSymptoms() {
-        List<ClassifiedSymptom> symptoms = new ArrayList<>();
-        ClassifiedSymptom symptom;
+    public List<KeywordClassifiedSymptom> fetchClassifiedSymptoms() {
+        List<KeywordClassifiedSymptom> symptoms = new ArrayList<>();
+        KeywordClassifiedSymptom symptom;
         String selectAll = "SELECT * FROM " + TABLE_NAME;
 
         try {
@@ -43,7 +43,7 @@ public class ClassifiedSymptomRepository {
             ResultSet rs = stm.executeQuery(selectAll);
 
             while (rs.next()) {
-                symptom = new ClassifiedSymptom();
+                symptom = new KeywordClassifiedSymptom();
                 symptom.setId(rs.getInt("id"));
                 symptom.setSymptomId(rs.getInt("symptomId"));
                 symptom.setChapterId(rs.getInt("chapterId"));
@@ -57,28 +57,28 @@ public class ClassifiedSymptomRepository {
         return symptoms;
     }
 
-    public ClassifiedSymptom saveClassifiedSymptom(ClassifiedSymptom classifiedSymptom) {
+    public KeywordClassifiedSymptom saveClassifiedSymptom(KeywordClassifiedSymptom keywordClassifiedSymptom) {
         String create = "INSERT INTO " + TABLE_NAME + " (symptomId, chapterId, subchapterId, secondsubId) " +
                 " VALUES (?, ?, ?, ?)";
 
 
         try {
             PreparedStatement stm = getDBConnection().prepareStatement(create);
-            stm.setInt(1, classifiedSymptom.getSymptomId());
-            stm.setInt(2, classifiedSymptom.getChapterId());
-            stm.setInt(3, classifiedSymptom.getSubchapterId());
-            stm.setInt(4, classifiedSymptom.getSecondsubId());
+            stm.setInt(1, keywordClassifiedSymptom.getSymptomId());
+            stm.setInt(2, keywordClassifiedSymptom.getChapterId());
+            stm.setInt(3, keywordClassifiedSymptom.getSubchapterId());
+            stm.setInt(4, keywordClassifiedSymptom.getSecondsubId());
             stm.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        return classifiedSymptom;
+        return keywordClassifiedSymptom;
     }
 
-    public Optional<ClassifiedSymptom> fetchClassifiedSymptomWithId(int id) {
-        Optional<ClassifiedSymptom> ch = Optional.empty();
-        ClassifiedSymptom symptom = new ClassifiedSymptom();
+    public Optional<KeywordClassifiedSymptom> fetchClassifiedSymptomWithId(int id) {
+        Optional<KeywordClassifiedSymptom> ch = Optional.empty();
+        KeywordClassifiedSymptom symptom = new KeywordClassifiedSymptom();
         String select = "SELECT * FROM " + TABLE_NAME + " WHERE id = " + id;
 
         try {
@@ -100,9 +100,9 @@ public class ClassifiedSymptomRepository {
         return ch;
     }
 
-    public Optional<ClassifiedSymptom> fetchClassifiedSymptomWithSymptomId(int id) {
-        Optional<ClassifiedSymptom> op = Optional.empty();
-        ClassifiedSymptom symptom = new ClassifiedSymptom();
+    public Optional<KeywordClassifiedSymptom> fetchClassifiedSymptomWithSymptomId(int id) {
+        Optional<KeywordClassifiedSymptom> op = Optional.empty();
+        KeywordClassifiedSymptom symptom = new KeywordClassifiedSymptom();
         String select = "SELECT * FROM " + TABLE_NAME + " WHERE symptomId = " + id;
 
         try {
@@ -125,8 +125,8 @@ public class ClassifiedSymptomRepository {
         return op;
     }
 
-    public Optional<ClassifiedSymptom> updateClassifiedSymptom(ClassifiedSymptom symptom, int id) {
-        Optional<ClassifiedSymptom> op = fetchClassifiedSymptomWithSymptomId(id);
+    public Optional<KeywordClassifiedSymptom> updateClassifiedSymptom(KeywordClassifiedSymptom symptom, int id) {
+        Optional<KeywordClassifiedSymptom> op = fetchClassifiedSymptomWithSymptomId(id);
         String update = "UPDATE " + TABLE_NAME + " SET symptomId = ?, chapterId = ?, subchapterId = ?, secondsubId = ? WHERE symptomId = ?";
 
         if (!op.isPresent()) {

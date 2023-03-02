@@ -1,6 +1,6 @@
 package com.lancaster.SymptomChapter.controller;
 
-import com.lancaster.SymptomChapter.model.ClassifiedSymptom;
+import com.lancaster.SymptomChapter.model.KeywordClassifiedSymptom;
 import com.lancaster.SymptomChapter.service.KeywordClassificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,27 +20,27 @@ public class KeywordClassificationController {
     private KeywordClassificationService service;
 
     @RequestMapping()
-    public List<ClassifiedSymptom> fetchClassifiedSymptoms() {
+    public List<KeywordClassifiedSymptom> fetchClassifiedSymptoms() {
         return service.fetchClassifiedSymptoms();
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST, produces = {
             MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ClassifiedSymptom> createClassifiedSymptom(@Validated @RequestBody ClassifiedSymptom symptom) {
+    public ResponseEntity<KeywordClassifiedSymptom> createClassifiedSymptom(@Validated @RequestBody KeywordClassifiedSymptom symptom) {
         return new ResponseEntity<>(service.saveClassifiedSymptom(symptom), HttpStatus.OK);
     }
 
     @RequestMapping(value = "classifiedSymptom/{id}", method = RequestMethod.GET, produces = {
             MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ClassifiedSymptom> findClassifiedSymptomWithName(@PathVariable("id") int symptomId) {
+    public ResponseEntity<KeywordClassifiedSymptom> findClassifiedSymptomWithName(@PathVariable("id") int symptomId) {
         return new ResponseEntity<>(service.fetchClassifiedSymptomWitSymptomId(symptomId), HttpStatus.OK);
     }
 
     @RequestMapping(value = "update/{id}", method = RequestMethod.PUT, produces = {
             MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ClassifiedSymptom> updateClassifiedSymptom(@RequestBody ClassifiedSymptom symptom, @PathVariable("id") int symptomId) {
-        ClassifiedSymptom c = service.updateClassifiedSymptom(symptom, symptomId);
+    public ResponseEntity<KeywordClassifiedSymptom> updateClassifiedSymptom(@RequestBody KeywordClassifiedSymptom symptom, @PathVariable("id") int symptomId) {
+        KeywordClassifiedSymptom c = service.updateClassifiedSymptom(symptom, symptomId);
         return new ResponseEntity<>(c, HttpStatus.OK);
     }
 

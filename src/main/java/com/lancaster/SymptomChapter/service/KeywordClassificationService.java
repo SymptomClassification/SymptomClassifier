@@ -1,19 +1,19 @@
 package com.lancaster.SymptomChapter.service;
 
-import com.lancaster.SymptomChapter.model.ClassifiedSymptom;
+import com.lancaster.SymptomChapter.model.KeywordClassifiedSymptom;
 
 import java.util.List;
 import java.util.Map;
 
 public interface KeywordClassificationService {
 
-    List<ClassifiedSymptom> fetchClassifiedSymptoms();
+    List<KeywordClassifiedSymptom> fetchClassifiedSymptoms();
 
-    ClassifiedSymptom saveClassifiedSymptom(ClassifiedSymptom classifiedSymptom);
+    KeywordClassifiedSymptom saveClassifiedSymptom(KeywordClassifiedSymptom keywordClassifiedSymptom);
 
-    ClassifiedSymptom fetchClassifiedSymptomWitSymptomId(int symptomId);
+    KeywordClassifiedSymptom fetchClassifiedSymptomWitSymptomId(int symptomId);
 
-    ClassifiedSymptom updateClassifiedSymptom(ClassifiedSymptom classifiedSymptom, int symptomId);
+    KeywordClassifiedSymptom updateClassifiedSymptom(KeywordClassifiedSymptom keywordClassifiedSymptom, int symptomId);
 
     List<Map<String, String>> classifySymptom(String symptom);
 

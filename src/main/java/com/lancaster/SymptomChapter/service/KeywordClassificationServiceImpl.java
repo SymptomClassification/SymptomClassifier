@@ -1,7 +1,7 @@
 package com.lancaster.SymptomChapter.service;
 
 import com.lancaster.SymptomChapter.classify.SymptomClassifier;
-import com.lancaster.SymptomChapter.model.ClassifiedSymptom;
+import com.lancaster.SymptomChapter.model.KeywordClassifiedSymptom;
 import com.lancaster.SymptomChapter.model.Symptom;
 import com.lancaster.SymptomChapter.repository.ClassifiedSymptomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,23 +24,23 @@ public class KeywordClassificationServiceImpl implements KeywordClassificationSe
 
 
     @Override
-    public List<ClassifiedSymptom> fetchClassifiedSymptoms() {
+    public List<KeywordClassifiedSymptom> fetchClassifiedSymptoms() {
         return repo.fetchClassifiedSymptoms();
     }
 
     @Override
-    public ClassifiedSymptom saveClassifiedSymptom(ClassifiedSymptom classifiedSymptom) {
-        return repo.saveClassifiedSymptom(classifiedSymptom);
+    public KeywordClassifiedSymptom saveClassifiedSymptom(KeywordClassifiedSymptom keywordClassifiedSymptom) {
+        return repo.saveClassifiedSymptom(keywordClassifiedSymptom);
     }
 
     @Override
-    public ClassifiedSymptom fetchClassifiedSymptomWitSymptomId(int symptomId) {
+    public KeywordClassifiedSymptom fetchClassifiedSymptomWitSymptomId(int symptomId) {
         return repo.fetchClassifiedSymptomWithSymptomId(symptomId).get();
     }
 
     @Override
-    public ClassifiedSymptom updateClassifiedSymptom(ClassifiedSymptom classifiedSymptom, int symptomId) {
-        return repo.updateClassifiedSymptom(classifiedSymptom, symptomId).get();
+    public KeywordClassifiedSymptom updateClassifiedSymptom(KeywordClassifiedSymptom keywordClassifiedSymptom, int symptomId) {
+        return repo.updateClassifiedSymptom(keywordClassifiedSymptom, symptomId).get();
     }
 
     @Override
@@ -62,12 +62,12 @@ public class KeywordClassificationServiceImpl implements KeywordClassificationSe
             for (List<Integer> ids : classificationIds) {
                 int chapterId = ids.get(0);
                 int subChapterId = ids.get(1);
-                ClassifiedSymptom classifiedSymptom = new ClassifiedSymptom();
-                classifiedSymptom.setSymptomId(symptomId);
-                classifiedSymptom.setChapterId(chapterId);
-                classifiedSymptom.setSubchapterId(subChapterId);
-                classifiedSymptom.setSecondsubId(0);
-                saveClassifiedSymptom(classifiedSymptom);
+                KeywordClassifiedSymptom keywordClassifiedSymptom = new KeywordClassifiedSymptom();
+                keywordClassifiedSymptom.setSymptomId(symptomId);
+                keywordClassifiedSymptom.setChapterId(chapterId);
+                keywordClassifiedSymptom.setSubchapterId(subChapterId);
+                keywordClassifiedSymptom.setSecondsubId(0);
+                saveClassifiedSymptom(keywordClassifiedSymptom);
             }
 
         } catch (IOException | InterruptedException e) {
