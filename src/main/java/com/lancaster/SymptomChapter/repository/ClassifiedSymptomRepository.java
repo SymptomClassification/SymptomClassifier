@@ -13,6 +13,7 @@ import java.util.Optional;
 public class ClassifiedSymptomRepository {
 
     private Connection con = null;
+    private final String TABLE_NAME = "keywordclassifiedsymptom";
 
     @Value("${spring.datasource.url}")
     String dbUrl;
@@ -35,7 +36,7 @@ public class ClassifiedSymptomRepository {
     public List<ClassifiedSymptom> fetchClassifiedSymptoms() {
         List<ClassifiedSymptom> symptoms = new ArrayList<>();
         ClassifiedSymptom symptom;
-        String selectAll = "SELECT * FROM classifiedsymptom";
+        String selectAll = "SELECT * FROM " + TABLE_NAME;
 
         try {
             Statement stm = getDBConnection().createStatement();
@@ -57,7 +58,7 @@ public class ClassifiedSymptomRepository {
     }
 
     public ClassifiedSymptom saveClassifiedSymptom(ClassifiedSymptom classifiedSymptom) {
-        String create = "INSERT INTO classifiedsymptom (symptomId, chapterId, subchapterId, secondsubId) " +
+        String create = "INSERT INTO " + TABLE_NAME + " (symptomId, chapterId, subchapterId, secondsubId) " +
                 " VALUES (?, ?, ?, ?)";
 
 
@@ -78,7 +79,7 @@ public class ClassifiedSymptomRepository {
     public Optional<ClassifiedSymptom> fetchClassifiedSymptomWithId(int id) {
         Optional<ClassifiedSymptom> ch = Optional.empty();
         ClassifiedSymptom symptom = new ClassifiedSymptom();
-        String select = "SELECT * FROM classifiedsymptom WHERE id = " + id;
+        String select = "SELECT * FROM " + TABLE_NAME + " WHERE id = " + id;
 
         try {
             Statement stm = getDBConnection().createStatement();
@@ -102,7 +103,7 @@ public class ClassifiedSymptomRepository {
     public Optional<ClassifiedSymptom> fetchClassifiedSymptomWithSymptomId(int id) {
         Optional<ClassifiedSymptom> op = Optional.empty();
         ClassifiedSymptom symptom = new ClassifiedSymptom();
-        String select = "SELECT * FROM classifiedsymptom WHERE symptomId = " + id;
+        String select = "SELECT * FROM " + TABLE_NAME + " WHERE symptomId = " + id;
 
         try {
             Statement stm = getDBConnection().createStatement();
@@ -126,7 +127,7 @@ public class ClassifiedSymptomRepository {
 
     public Optional<ClassifiedSymptom> updateClassifiedSymptom(ClassifiedSymptom symptom, int id) {
         Optional<ClassifiedSymptom> op = fetchClassifiedSymptomWithSymptomId(id);
-        String update = "UPDATE classifiedsymptom SET symptomId = ?, chapterId = ?, subchapterId = ?, secondsubId = ? WHERE symptomId = ?";
+        String update = "UPDATE " + TABLE_NAME + " SET symptomId = ?, chapterId = ?, subchapterId = ?, secondsubId = ? WHERE symptomId = ?";
 
         if (!op.isPresent()) {
             return Optional.empty();
