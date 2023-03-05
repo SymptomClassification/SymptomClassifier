@@ -102,7 +102,7 @@ public class KeywordClassifiedSymptomRepository {
 
     public Optional<KeywordClassifiedSymptom> fetchClassifiedSymptomWithSymptomId(int id) {
         Optional<KeywordClassifiedSymptom> op = Optional.empty();
-        KeywordClassifiedSymptom symptom = new KeywordClassifiedSymptom();
+
         String select = "SELECT * FROM " + TABLE_NAME + " WHERE symptomId = " + id;
 
         try {
@@ -110,6 +110,7 @@ public class KeywordClassifiedSymptomRepository {
             ResultSet rs = stm.executeQuery(select);
 
             while (rs.next()) {
+                KeywordClassifiedSymptom symptom = new KeywordClassifiedSymptom();
                 symptom.setId(rs.getInt("id"));
                 symptom.setSymptomId(rs.getInt("symptomId"));
                 symptom.setChapterId(rs.getInt("chapterId"));

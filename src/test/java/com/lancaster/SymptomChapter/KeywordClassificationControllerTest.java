@@ -16,22 +16,16 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import static org.mockito.Mockito.verify;
 
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-
-
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(MockitoJUnitRunner.class)
 @WebMvcTest(controllers = KeywordClassificationController.class)
@@ -41,18 +35,18 @@ public class KeywordClassificationControllerTest {
     private MockMvc mockMvc;
 
     @InjectMocks
-    private KeywordClassificationController classifiedSymptomController;
+    private KeywordClassificationController controller;
 
     @Mock
     private KeywordClassificationService service;
 
     @Before
     public void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(classifiedSymptomController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
     @Test
-    public void testFindClassifiedSymptomWithName() throws Exception {
+    public void testFindClassifiedSymptomWithId() throws Exception {
         KeywordClassifiedSymptom symptom = new KeywordClassifiedSymptom(4, 1, 2, 2, 2);
         given(service.fetchClassifiedSymptomWitSymptomId(1)).willReturn(symptom);
         mockMvc.perform(get("/classifiedSymptoms/classifiedSymptom/{id}", 1))
@@ -61,17 +55,17 @@ public class KeywordClassificationControllerTest {
 
     @Test
     public void testUpdateClassifiedSymptom() throws Exception {
-
         KeywordClassifiedSymptom symptom = new KeywordClassifiedSymptom(1, 1, 1, 2, 3);
 
-        KeywordClassifiedSymptom mockKeywordClassifiedSymptom = new KeywordClassifiedSymptom(1, 1, 1, 2, 3);
+        Optional<KeywordClassifiedSymptom> mockOptionalSymptom = Optional.of(new KeywordClassifiedSymptom(1, 1, 1, 2, 3));
+        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 
         mockMvc.perform(put("/classifiedSymptoms/update/{id}", 1)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(symptom)))
                 .andExpect(status().isOk());
 //                .andExpect(jsonPath("$.id", is(1)))
-//                .andExpect(jsonPath("$.name", is("Fever")))
+//                .andExpect(jsonPath("$.symptomId", is(1)))
 //                .andExpect(jsonPath("$.chapterId", is(1)))
 //                .andExpect(jsonPath("$.subchapterId", is(2)))
 //                .andExpect(jsonPath("$.secondsubId", is(3)));
@@ -82,7 +76,7 @@ public class KeywordClassificationControllerTest {
     }
 
     @Test
-    public void testClassifySymptom() throws Exception {
+    public void testKeywordClassification() throws Exception {
         String name = "someName";
 
         // Mock the service response
