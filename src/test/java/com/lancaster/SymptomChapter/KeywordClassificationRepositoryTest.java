@@ -2,7 +2,6 @@ package com.lancaster.SymptomChapter;
 
 import com.lancaster.SymptomChapter.model.KeywordClassifiedSymptom;
 import com.lancaster.SymptomChapter.repository.KeywordClassifiedSymptomRepository;
-import com.lancaster.SymptomChapter.service.KeywordClassificationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
