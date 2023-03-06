@@ -1,6 +1,6 @@
-package com.lancaster.SymptomChapter.repository;
+package com.lancaster.symptomchapter.repository;
 
-import com.lancaster.SymptomChapter.model.SpacyChapters;
+import com.lancaster.symptomchapter.model.SpacyChapters;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 

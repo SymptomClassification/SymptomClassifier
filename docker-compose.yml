@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  chapter-api:
-    image: chapterapi-image
+  symptomclassifier-api:
+    image: symptomclassifier-image
     build:
       context: .
     ports:
@@ -12,10 +12,10 @@ services:
       SPRING_DATASOURCE_USERNAME: ahmet
       SPRING_DATASOURCE_PASSWORD: mypass
     volumes:
-      - /data/chapterapi-app
+      - /data/symptomclassifier-app
     networks:
       - default
-    container_name: chapterapi-api
+    container_name: symptomclassifier-api
 
 networks:
   default:

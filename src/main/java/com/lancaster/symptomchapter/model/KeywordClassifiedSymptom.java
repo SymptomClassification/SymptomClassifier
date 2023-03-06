@@ -1,9 +1,11 @@
-package com.lancaster.SymptomChapter.model;
+package com.lancaster.symptomchapter.model;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.*;
 import org.springframework.lang.Nullable;
-
-import javax.persistence.*;
 
 @Entity
 @Getter

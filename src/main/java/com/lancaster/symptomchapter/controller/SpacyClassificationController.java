@@ -1,7 +1,7 @@
-package com.lancaster.SymptomChapter.controller;
+package com.lancaster.symptomchapter.controller;
 
-import com.lancaster.SymptomChapter.model.SpacyChapters;
-import com.lancaster.SymptomChapter.service.SpacyClassificationService;
+import com.lancaster.symptomchapter.model.SpacyChapters;
+import com.lancaster.symptomchapter.service.SpacyClassificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

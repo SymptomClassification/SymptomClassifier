@@ -1,9 +1,9 @@
-package com.lancaster.SymptomChapter.service;
+package com.lancaster.symptomchapter.service;
 
-import com.lancaster.SymptomChapter.classify.SymptomClassifier;
-import com.lancaster.SymptomChapter.model.KeywordClassifiedSymptom;
-import com.lancaster.SymptomChapter.model.Symptom;
-import com.lancaster.SymptomChapter.repository.KeywordClassifiedSymptomRepository;
+import com.lancaster.symptomchapter.classify.KeywordSymptomClassifier;
+import com.lancaster.symptomchapter.model.KeywordClassifiedSymptom;
+import com.lancaster.symptomchapter.model.Symptom;
+import com.lancaster.symptomchapter.repository.KeywordClassifiedSymptomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,27 +20,11 @@ public class KeywordClassificationServiceImpl implements KeywordClassificationSe
     @Autowired
     private SymptomService symptomService;
 
-    SymptomClassifier symptomClassifier = new SymptomClassifier();
-
-
-    @Override
-    public List<KeywordClassifiedSymptom> fetchClassifiedSymptoms() {
-        return repo.fetchClassifiedSymptoms();
-    }
+    KeywordSymptomClassifier keywordSymptomClassifier = new KeywordSymptomClassifier();
 
     @Override
     public KeywordClassifiedSymptom saveClassifiedSymptom(KeywordClassifiedSymptom keywordClassifiedSymptom) {
         return repo.saveClassifiedSymptom(keywordClassifiedSymptom);
-    }
-
-    @Override
-    public KeywordClassifiedSymptom fetchClassifiedSymptomWitSymptomId(int symptomId) {
-        return repo.fetchClassifiedSymptomWithSymptomId(symptomId).get();
-    }
-
-    @Override
-    public KeywordClassifiedSymptom updateClassifiedSymptom(KeywordClassifiedSymptom keywordClassifiedSymptom, int symptomId) {
-        return repo.updateClassifiedSymptom(keywordClassifiedSymptom, symptomId).get();
     }
 
     @Override
@@ -58,7 +42,7 @@ public class KeywordClassificationServiceImpl implements KeywordClassificationSe
         // Save classification
         List<List<Integer>> classificationIds;
         try {
-            classificationIds = symptomClassifier.getClassificationId(symptom);
+            classificationIds = keywordSymptomClassifier.getClassificationId(symptom);
             for (List<Integer> ids : classificationIds) {
                 int chapterId = ids.get(0);
                 int subChapterId = ids.get(1);
@@ -74,10 +58,9 @@ public class KeywordClassificationServiceImpl implements KeywordClassificationSe
             throw new RuntimeException(e);
         }
 
-
         // Return classification
         try {
-            return symptomClassifier.getClassificationDefinition(symptom);
+            return keywordSymptomClassifier.getClassificationDefinition(symptom);
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }

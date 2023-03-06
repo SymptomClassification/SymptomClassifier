@@ -5,16 +5,16 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.7</version>
+        <version>3.0.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lancaster</groupId>
-    <artifactId>SymptomChapter</artifactId>
+    <artifactId>SymptomClassifier</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>SymptomChapter</name>
-    <description>Demo project for Spring Boot</description>
+    <name>SymptomClassifier</name>
+    <description>REST API for Keyword and Machine Learning classifications</description>
     <properties>
-        <java.version>8</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -81,7 +81,7 @@
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.0.18.Final</version>
+            <version>8.0.0.Final</version>
         </dependency>
     </dependencies>
 

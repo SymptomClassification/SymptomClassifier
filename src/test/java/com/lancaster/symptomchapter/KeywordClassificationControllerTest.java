@@ -1,10 +1,9 @@
-package com.lancaster.SymptomChapter;
+package com.lancaster.symptomchapter;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lancaster.SymptomChapter.controller.KeywordClassificationController;
-import com.lancaster.SymptomChapter.model.KeywordClassifiedSymptom;
-import com.lancaster.SymptomChapter.service.KeywordClassificationService;
+import com.lancaster.symptomchapter.controller.KeywordClassificationController;
+import com.lancaster.symptomchapter.service.KeywordClassificationService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,13 +16,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -43,36 +43,6 @@ public class KeywordClassificationControllerTest {
     @Before
     public void setup() {
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
-    }
-
-    @Test
-    public void testFindClassifiedSymptomWithId() throws Exception {
-        KeywordClassifiedSymptom symptom = new KeywordClassifiedSymptom(4, 1, 2, 2, 2);
-        given(service.fetchClassifiedSymptomWitSymptomId(1)).willReturn(symptom);
-        mockMvc.perform(get("/classifiedSymptoms/classifiedSymptom/{id}", 1))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void testUpdateClassifiedSymptom() throws Exception {
-        KeywordClassifiedSymptom symptom = new KeywordClassifiedSymptom(1, 1, 1, 2, 3);
-
-        Optional<KeywordClassifiedSymptom> mockOptionalSymptom = Optional.of(new KeywordClassifiedSymptom(1, 1, 1, 2, 3));
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
-
-        mockMvc.perform(put("/classifiedSymptoms/update/{id}", 1)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(symptom)))
-                .andExpect(status().isOk());
-//                .andExpect(jsonPath("$.id", is(1)))
-//                .andExpect(jsonPath("$.symptomId", is(1)))
-//                .andExpect(jsonPath("$.chapterId", is(1)))
-//                .andExpect(jsonPath("$.subchapterId", is(2)))
-//                .andExpect(jsonPath("$.secondsubId", is(3)));
-
-//        verify(service, times(1)).updateClassifiedSymptom(symptom, "Fever");
-//        verifyNoMoreInteractions(service);
-
     }
 
     @Test

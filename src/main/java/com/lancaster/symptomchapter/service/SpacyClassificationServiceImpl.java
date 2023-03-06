@@ -1,8 +1,8 @@
-package com.lancaster.SymptomChapter.service;
+package com.lancaster.symptomchapter.service;
 
-import com.lancaster.SymptomChapter.classify.SpacyClassifier;
-import com.lancaster.SymptomChapter.model.SpacyChapters;
-import com.lancaster.SymptomChapter.repository.SpacyClassificationRepository;
+import com.lancaster.symptomchapter.classify.SpacyClassifier;
+import com.lancaster.symptomchapter.model.SpacyChapters;
+import com.lancaster.symptomchapter.repository.SpacyClassificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package com.lancaster.SymptomChapter.service;
+package com.lancaster.symptomchapter.service;
 
-import com.lancaster.SymptomChapter.model.SpacyChapters;
+import com.lancaster.symptomchapter.model.SpacyChapters;
 
 import java.util.List;
 

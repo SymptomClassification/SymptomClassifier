@@ -1,11 +1,11 @@
-package com.lancaster.SymptomChapter.classify;
+package com.lancaster.symptomchapter.classify;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class SymptomClassifier {
+public class KeywordSymptomClassifier {
 
     public List<Map<String, String>> getClassificationDefinition(String symptom) throws IOException, InterruptedException {
         List<String> command = new ArrayList<>();

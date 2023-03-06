@@ -24,4 +24,4 @@ RUN python3 ./target/spacyClassification/extract_training_data.py
 RUN python3 ./target/spacyClassification/trainModel.py
 RUN python3 ./target/spacyClassification/machineLearningTesting.py
 
-CMD ["java", "-jar", "target/SymptomChapter-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/SymptomClassifier-0.0.1-SNAPSHOT.jar"]

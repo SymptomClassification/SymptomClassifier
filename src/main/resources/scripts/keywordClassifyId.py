@@ -121,7 +121,7 @@ def pipeline(symptom):
     symptom_subchapter = []
     final_output = set()
 
-    url_chapters = 'http://localhost:8090/chapters'
+    url_chapters = 'http://tableoperations:8098/chapters'
 
     with urllib.request.urlopen(url_chapters) as response:
         if response.status == 200:
