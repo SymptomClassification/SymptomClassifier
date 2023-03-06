@@ -129,14 +129,14 @@ def pipeline(symptom):
             json_data = response.read().decode('utf-8')
             chapters = json.loads(json_data)
 
-    url_subchapters = 'http://172.22.0.5:8094/subchapters'
+    url_subchapters = 'http://tableoperations:8098/subchapters'
 
     with urllib.request.urlopen(url_subchapters) as response:
         if response.status == 200:
             json_data = response.read().decode('utf-8')
             subchapters = json.loads(json_data)
 
-    url_subtitles = 'http://172.22.0.6:8098/subtitles'
+    url_subtitles = 'http://tableoperations:8098/subtitles'
 
     with urllib.request.urlopen(url_subtitles) as response:
         if response.status == 200:
