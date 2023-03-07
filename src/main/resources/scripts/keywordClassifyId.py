@@ -111,15 +111,11 @@ def match_subchapters(subchapters, chapters, subchapters_origdict, chapters_orig
         if t == "" or t == " ":
             chapters_set.remove(t)
     return set(chapters_set)
-def pipeline(symptom):
 
+def pipeline(symptom):
     chapters = {}
     subchapters = {}
     subtitles = {}
-
-    symptom_chapter = []
-    symptom_subchapter = []
-    final_output = set()
 
     url_chapters = 'http://tableoperations:8098/chapters'
 
@@ -143,28 +139,10 @@ def pipeline(symptom):
             subtitles = json.loads(json_data)
 
 
-    symptom_chapter, symptom_subchapter = classify(chapters, subchapters, subtitles, symptom)
-
-    if len(symptom_chapter) == 0:
-        symptom_chapter.append("unknown")
-    if len(symptom_subchapter) == 0:
-        symptom_subchapter.append("unknown")
-
-    if len(chapters_dict) != 0:
-        for id in chapters_dict:
-            chapter_subchapter = []
-            for chapterId in subchapters_dict:
-                if id["id"] == chapterId["id"]:
-                    chapter_subchapter.append(chapterId["name"])
-            if len(chapter_subchapter) != 0:
-                final_output.add(id["name"] + ", "+ " , ".join(chapter_subchapter))
-            else:
-                final_output.add(id["name"])
-    if len(final_output) == 0:
-        final_output.add("unknown")
+    classify(chapters, subchapters, subtitles, symptom)
 
 
-    return [list(chaptersId), list(subchaptersId)]
+    return json.dumps([list(chaptersId), list(subchaptersId)])
 
 if __name__ == '__main__':
     classification = pipeline(" ".join(sys.argv[1:]))

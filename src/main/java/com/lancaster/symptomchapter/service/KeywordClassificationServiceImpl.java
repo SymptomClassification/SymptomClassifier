@@ -43,9 +43,9 @@ public class KeywordClassificationServiceImpl implements KeywordClassificationSe
         List<List<Integer>> classificationIds;
         try {
             classificationIds = keywordSymptomClassifier.getClassificationId(symptom);
-            for (List<Integer> ids : classificationIds) {
-                int chapterId = ids.get(0);
-                int subChapterId = ids.get(1);
+            for (int i = 0; i < classificationIds.get(0).size(); i++) {
+                int chapterId = classificationIds.get(0).get(i);
+                int subChapterId = classificationIds.get(1).get(i);
                 KeywordClassifiedSymptom keywordClassifiedSymptom = new KeywordClassifiedSymptom();
                 keywordClassifiedSymptom.setSymptomId(symptomId);
                 keywordClassifiedSymptom.setChapterId(chapterId);

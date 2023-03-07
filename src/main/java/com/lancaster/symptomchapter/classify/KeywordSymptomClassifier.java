@@ -1,5 +1,8 @@
 package com.lancaster.symptomchapter.classify;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -66,24 +69,15 @@ public class KeywordSymptomClassifier {
 
         BufferedReader bfr = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line;
-        List<List<Integer>> output = new ArrayList<>();
-
+        StringBuilder sb = new StringBuilder();
         while ((line = bfr.readLine()) != null) {
-            List<Integer> row = new ArrayList<>();
-            try {
-                String[] tokens = line.replaceAll("\\[|\\]|\\s", "").split(",");
-                for (int i = 0; i < tokens.length; i += 2) {
-                    int value1 = Integer.parseInt(tokens[i]);
-                    int value2 = Integer.parseInt(tokens[i + 1]);
-                    row.add(value1);
-                    row.add(value2);
-                    output.add(new ArrayList<>(row));
-                    row.clear();
-                }
-            } catch (NumberFormatException e) {
-                // skip this line and continue with the next one
-            }
+            sb.append(line);
         }
+        String json = sb.toString();
+
+        ObjectMapper mapper = new ObjectMapper();
+        List<List<Integer>> output = mapper.readValue(json, new TypeReference<>() {
+        });
 
         int exitCode = process.waitFor();
         if (exitCode == 0) {
