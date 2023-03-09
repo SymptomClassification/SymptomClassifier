@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/spacy")
@@ -22,8 +23,8 @@ public class SpacyClassificationController {
 
     @RequestMapping(value = "classifySymptom/{name}", method = RequestMethod.GET, produces = {
             MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<String>> classifySymptom(@PathVariable("name") String name) {
-        List<String> c = service.classifySymptom(name);
+    public ResponseEntity<List<Map<String, String>>> classifySymptom(@PathVariable("name") String name) {
+        List<Map<String, String>> c = service.classifySymptom(name);
         return new ResponseEntity<>(c, HttpStatus.OK);
     }
 

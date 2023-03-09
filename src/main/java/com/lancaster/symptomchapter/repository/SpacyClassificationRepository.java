@@ -1,6 +1,7 @@
 package com.lancaster.symptomchapter.repository;
 
 import com.lancaster.symptomchapter.model.SpacyChapters;
+import com.lancaster.symptomchapter.model.SpacyClassifiedSymptom;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -52,4 +53,26 @@ public class SpacyClassificationRepository {
         }
         return chapters;
     }
+
+    public int saveSpacyClassifiedSymptom(SpacyClassifiedSymptom symptom) {
+        String create = "INSERT INTO spacyclassifiedsymptom (symptomId, chapter, subchapter) " +
+                "VALUES (?, ?, ?) ";
+        try {
+            PreparedStatement stm = getDBConnection().prepareStatement(create, Statement.RETURN_GENERATED_KEYS);
+            stm.setInt(1, symptom.getSymptomId());
+            stm.setString(2, symptom.getChapter());
+            stm.setString(3, symptom.getSubchapter());
+            stm.executeUpdate();
+
+            ResultSet rs = stm.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else {
+                throw new SQLException("Creating spacy classified symptom failed, no ID obtained.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

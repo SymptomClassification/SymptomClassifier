@@ -23,11 +23,6 @@ public class KeywordClassificationServiceImpl implements KeywordClassificationSe
     KeywordSymptomClassifier keywordSymptomClassifier = new KeywordSymptomClassifier();
 
     @Override
-    public KeywordClassifiedSymptom saveClassifiedSymptom(KeywordClassifiedSymptom keywordClassifiedSymptom) {
-        return repo.saveClassifiedSymptom(keywordClassifiedSymptom);
-    }
-
-    @Override
     public List<Map<String, String>> classifySymptom(String symptom) {
         // Save symptom
         Symptom symptomModel = new Symptom();
@@ -51,7 +46,7 @@ public class KeywordClassificationServiceImpl implements KeywordClassificationSe
                 keywordClassifiedSymptom.setChapterId(chapterId);
                 keywordClassifiedSymptom.setSubchapterId(subChapterId);
                 keywordClassifiedSymptom.setSecondsubId(0);
-                saveClassifiedSymptom(keywordClassifiedSymptom);
+                repo.saveClassifiedSymptom(keywordClassifiedSymptom);
             }
 
         } catch (IOException | InterruptedException e) {
