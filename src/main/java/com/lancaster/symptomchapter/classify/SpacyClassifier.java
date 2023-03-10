@@ -3,10 +3,7 @@ package com.lancaster.symptomchapter.classify;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SpacyClassifier {
 
@@ -26,6 +23,9 @@ public class SpacyClassifier {
         List<String> output = new ArrayList<>();
 
         while ((line = bfr.readLine()) != null) {
+            if (line.equals("[Generalities]")) {
+                return List.of(Collections.singletonMap("0", "0"));
+            }
             output.add(line);
         }
 
