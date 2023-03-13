@@ -23,7 +23,7 @@ public class SpacyClassifier {
         List<String> output = new ArrayList<>();
 
         while ((line = bfr.readLine()) != null) {
-            if (line.equals("[Generalities]")) {
+            if (line.equals("Generalities")) {
                 return List.of(Collections.singletonMap("0", "0"));
             }
             output.add(line);
