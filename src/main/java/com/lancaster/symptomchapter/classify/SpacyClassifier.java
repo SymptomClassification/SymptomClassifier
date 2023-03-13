@@ -24,7 +24,7 @@ public class SpacyClassifier {
 
         while ((line = bfr.readLine()) != null) {
             if (line.equals("Generalities")) {
-                return List.of(Collections.singletonMap("0", "0"));
+                output.add("null - null");
             }
             output.add(line);
         }
