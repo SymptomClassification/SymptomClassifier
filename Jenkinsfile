@@ -39,7 +39,9 @@ pipeline {
         }
         stage('Start Container') {
             steps {
-                sh 'docker-compose up -d'
+                 withCredentials([string(credentialsId: 'DB_URL', variable: 'DB_URL'), string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'), string(credentialsId: 'DB_USERNAME', variable: 'DB_USERNAME')]) {
+                       sh 'docker-compose up -d'
+                 }
             }
         }
     }
