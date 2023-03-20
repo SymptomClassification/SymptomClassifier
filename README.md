@@ -1,14 +1,19 @@
-# Pre-requisites
+# Symptom Classifier
+
+This project starts the microservice which enables classification of symptoms.
+
+## Pre-requisites
 - Java JDK 17
 - Docker
 - Docker Compose
-- Table Operations Service is running
+- Table Operations Service (https://github.com/SymptomClassification/TableOperations) is running
+
+After these prerequisites are fulfilled, please execute the following commands:
 
 ```bash
 ./mvnw clean package
 docker compose up
 ```
-
 
 # Notes
 - The docker compose up command takes more than 5 minutes to start the application. Please be patient.
