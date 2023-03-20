@@ -5,7 +5,6 @@
 - Table Operations Service is running
 
 ```bash
-./mvnw test
 ./mvnw clean package
 docker compose up
 ```
@@ -16,3 +15,9 @@ docker compose up
 
 # After the application is up and running
 - You can access the Swagger UI of application at http://localhost:8090/swagger-ui/index.html
+- To try from terminal, you can use the following curl command
+```bash
+curl -X 'GET' \
+'http://dagere.comiles.eu:8090/spacy/classifySymptom/head%20ache' \
+-H 'accept: application/json'
+```
