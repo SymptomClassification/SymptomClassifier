@@ -10,4 +10,6 @@ public interface SpacyClassificationService {
 
     List<SpacyChapters> fetchSpacyChapters();
 
+    List<Map<String, String>> classifyMultiLabel(String symptom);
+
 }

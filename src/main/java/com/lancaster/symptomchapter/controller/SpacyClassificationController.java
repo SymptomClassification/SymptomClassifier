@@ -35,4 +35,11 @@ public class SpacyClassificationController {
         return new ResponseEntity<>(c, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "classifyMultiLabel/{name}", method = RequestMethod.GET, produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<Map<String, String>>> classifyMultiLabel(@PathVariable("name") String name) {
+        List<Map<String, String>> c = service.classifyMultiLabel(name);
+        return new ResponseEntity<>(c, HttpStatus.OK);
+    }
+
 }

@@ -61,4 +61,36 @@ public class SpacyClassificationServiceImpl implements SpacyClassificationServic
     public List<SpacyChapters> fetchSpacyChapters() {
         return repo.fetchSpacyChapters();
     }
+
+    @Override
+    public List<Map<String, String>> classifyMultiLabel(String symptom) {
+        // Save symptom
+        Symptom symptomModel = new Symptom();
+        symptomModel.setSymptom(symptom);
+        int symptomId = 0;
+        try {
+            symptomId = symptomService.saveSymptom(symptomModel);
+        } catch (Exception e) {
+            System.out.println("Symptom already exists");
+        }
+
+        List<Map<String, String>> classificationDefinitions;
+        try {
+            classificationDefinitions = spacyClassifier.multiLabelSymptom(symptom);
+            for (Map<String, String> classificationDefinition : classificationDefinitions) {
+                String chapterName = classificationDefinition.get("ChapterName");
+                String subchapterName = classificationDefinition.get("SubchapterName");
+
+                SpacyClassifiedSymptom spacyClassifiedSymptom = new SpacyClassifiedSymptom();
+                spacyClassifiedSymptom.setSymptomId(symptomId);
+                spacyClassifiedSymptom.setChapter(chapterName);
+                spacyClassifiedSymptom.setSubchapter(subchapterName);
+                repo.saveSpacyClassifiedSymptom(spacyClassifiedSymptom);
+            }
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return classificationDefinitions;
+    }
 }
