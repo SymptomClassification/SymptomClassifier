@@ -8,8 +8,6 @@ COPY target ./target
 # Copy the Python scripts and requirements.txt
 COPY src/main/resources/scripts/spacyClassification ./target/spacyClassification
 
-COPY src/main/resources/scripts/multiLabelClassification ./target/multiLabelClassification
-
 COPY requirements.txt ./target/requirements.txt
 
 COPY src/main/resources/scripts/keywordClassifyName.py ./src/main/resources/scripts/
